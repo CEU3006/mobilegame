@@ -9,7 +9,7 @@ public class c : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Input.gyro.enabled = false;
+        Input.gyro.enabled = true;
         Debug.Log("Gyro Enabled");
         correctQuaternion = Quaternion.Euler(90f, 0f, 0f); 
     }
