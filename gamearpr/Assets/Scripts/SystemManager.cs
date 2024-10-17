@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class SystemManager : MonoBehaviour
@@ -8,7 +9,8 @@ public class SystemManager : MonoBehaviour
     bool secondPart = false;
     public Vector2 currentscore = Vector2.zero;
     List<GameObject> pinsDelete= new List<GameObject>();
-
+    [SerializeField]public List< GameObject> textMeshPros = new List<GameObject>();
+    
     public void ballAtEnd()
     {
         GameObject[] pins = GameObject.FindGameObjectsWithTag("pin");
@@ -25,7 +27,9 @@ public class SystemManager : MonoBehaviour
         if (!secondPart)
         {
             secondPart = true;
-            currentscore.x = pinsnocked; 
+            currentscore.x = pinsnocked;
+            //Debug.Log(listOfscores.Count);
+            textMeshPros[listOfscores.Count * 2].GetComponent<TextMeshProUGUI>().text = "" + currentscore.x;
         }
         else
         {
@@ -44,10 +48,11 @@ public class SystemManager : MonoBehaviour
             pinsDelete.Clear();
             currentscore.y = pinsnocked;
             listOfscores.Add(currentscore);
-            for (int i = 0; i < listOfscores.Count; i++)
-            {
-                Debug.Log(listOfscores[i]);
-            }
+            textMeshPros[(listOfscores.Count * 2)-1].GetComponent<TextMeshProUGUI>().text = "" + currentscore.y;
+            //for (int i = 0; i < listOfscores.Count; i++)
+            //{
+            //    Debug.Log(listOfscores[i]);
+            //}
         }
     } 
 }
