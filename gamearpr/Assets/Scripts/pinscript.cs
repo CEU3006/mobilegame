@@ -5,7 +5,6 @@ using UnityEngine;
 public class pinscript : MonoBehaviour
 {
     public Vector3 startingpos;
-    [SerializeField] public int pinNum;
     Rigidbody rb;
     // Start is called before the first frame update
     void Start()
