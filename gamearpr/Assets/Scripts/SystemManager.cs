@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SystemManager : MonoBehaviour
 {
@@ -104,5 +105,9 @@ public class SystemManager : MonoBehaviour
         ball.SetActive(false);
         button.SetActive(false);
         exitBut.SetActive(true);
+    }
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }

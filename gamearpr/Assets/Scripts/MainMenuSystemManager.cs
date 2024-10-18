@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenuSystemManager : MonoBehaviour
 {
@@ -28,15 +29,15 @@ public class MainMenuSystemManager : MonoBehaviour
     }
     public void EasyButton()
     {
-
+        SceneManager.LoadScene(1);
     }
     public void ClassicButton()
     {
-
+        SceneManager.LoadScene(2);
     }
     public void ArcadeButton()
     {
-
+        SceneManager.LoadScene(3);
     }
     public void BackButton()
     {

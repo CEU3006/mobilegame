@@ -27,8 +27,8 @@ public class Moving : MonoBehaviour
     {
         if(!beenPressed)
         {
-            Quaternion current = correctQuaternion* GyrotoUnity(Input.gyro.attitude);
-            pos += ballspeed * current.y * Time.deltaTime;
+            //Quaternion current = correctQuaternion* GyrotoUnity(Input.gyro.attitude);
+            pos += ballspeed * Input.acceleration.normalized.x * Time.deltaTime;
             if (pos > maxvalue)
                 pos = maxvalue;
             else if (pos < minvalue)
@@ -37,8 +37,8 @@ public class Moving : MonoBehaviour
         }
         else if( beenPressed )
         {
-            Quaternion current = correctQuaternion * GyrotoUnity(Input.gyro.attitude);
-            rb.velocity = new Vector3(ballspeedWhilerolling* current.y, rb.velocity.y, 1);
+            //Quaternion current = correctQuaternion * GyrotoUnity(Input.gyro.attitude);
+            rb.velocity = new Vector3(ballspeedWhilerolling* Input.acceleration.normalized.x, rb.velocity.y, 1);
         }
         
     }
@@ -60,8 +60,8 @@ public class Moving : MonoBehaviour
         transform.position = new Vector3(0, -0.11f, 4.54f);
         beenPressed = false;
     }
-    private Quaternion GyrotoUnity(Quaternion q)
-    {
-        return new Quaternion(q.x, q.y, -q.z, -q.w);
-    }
+    //private Quaternion GyrotoUnity(Quaternion q)
+    //{
+    //    return new Quaternion(q.x, q.y, -q.z, -q.w);
+    //}
 }
