@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,7 +15,19 @@ public class SystemManager : MonoBehaviour
     [SerializeField] public GameObject ball;
     [SerializeField] public GameObject button;
     [SerializeField] public GameObject exitBut;
+    AudioSource musicsource;
 
+    bool Musicon;
+    private void Start()
+    {
+        LoadData();
+        musicsource = gameObject.GetComponent<AudioSource>();
+
+        if (Musicon)
+        {
+            musicsource.Play();
+        }
+    }
     public void ballAtEnd()
     {
         GameObject[] pins = GameObject.FindGameObjectsWithTag("pin");
@@ -110,4 +123,17 @@ public class SystemManager : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+    public void AlowExit()
+    {
+        exitBut.SetActive(!exitBut.activeSelf);
+    }
+    public void LoadData()
+    {
+        string tempPath = Path.Combine(Application.persistentDataPath + "/data/", "SaveData" + ".txt");
+        string json = File.ReadAllText(tempPath);
+        musicdata data = JsonUtility.FromJson<musicdata>(json);
+        Musicon = data.Musicon;
+        
+    }
 }
+
