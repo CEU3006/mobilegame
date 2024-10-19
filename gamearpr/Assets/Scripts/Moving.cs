@@ -56,7 +56,7 @@ public class Moving : MonoBehaviour
         rb.useGravity = false;
         rb.velocity = new Vector3(0, 0, 0);
         rb.angularVelocity = Vector3.zero;
-        transform.eulerAngles = Vector3.zero;
+        transform.eulerAngles = new Vector3(-180, 0, 0);
         transform.position = new Vector3(0, -0.11f, 4.54f);
         beenPressed = false;
     }
