@@ -16,7 +16,6 @@ public class SystemManager : MonoBehaviour
     [SerializeField] public GameObject button;
     [SerializeField] public GameObject exitBut;
     AudioSource musicsource;
-
     bool Musicon;
     private void Start()
     {
@@ -121,6 +120,7 @@ public class SystemManager : MonoBehaviour
     }
     public void BackToMainMenu()
     {
+        Admanager.instance.addscrip.ShowAd();
         SceneManager.LoadScene(0);
     }
     public void AlowExit()
