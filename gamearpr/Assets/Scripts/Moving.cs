@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Moving : MonoBehaviour
 {
-    private Quaternion correctQuaternion;
+    //private Quaternion correctQuaternion;
     float maxvalue = 1;
     float minvalue = -1;
     float ballspeed = 1f;
@@ -15,11 +16,11 @@ public class Moving : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Input.gyro.enabled = true;
+        //Input.gyro.enabled = true;
         rb = GetComponent<Rigidbody>();
         rb.useGravity = false;
-        Debug.Log("Gyro Enabled");
-        correctQuaternion = Quaternion.Euler(90f, 0f, 0f);
+        //Debug.Log("Gyro Enabled");
+        //correctQuaternion = Quaternion.Euler(90f, 0f, 0f);
     }
 
     // Update is called once per frame
@@ -37,8 +38,17 @@ public class Moving : MonoBehaviour
         }
         else if( beenPressed )
         {
-            //Quaternion current = correctQuaternion * GyrotoUnity(Input.gyro.attitude);
-            rb.velocity = new Vector3(ballspeedWhilerolling* Input.acceleration.normalized.x, rb.velocity.y, 1);
+            //Debug.Log(Input.acceleration.normalized.z);
+            float numz = Input.acceleration.normalized.z;
+            if (numz > 0.4)
+            {
+                numz = 0.4f;
+            }
+            if (numz < -0.4)
+            {
+                numz = -0.4f;
+            }
+            rb.velocity = new Vector3(ballspeedWhilerolling* Input.acceleration.normalized.x, rb.velocity.y, ballspeed * numz + 1);
         }
         
     }
@@ -60,8 +70,4 @@ public class Moving : MonoBehaviour
         transform.position = new Vector3(0, -0.11f, 4.54f);
         beenPressed = false;
     }
-    //private Quaternion GyrotoUnity(Quaternion q)
-    //{
-    //    return new Quaternion(q.x, q.y, -q.z, -q.w);
-    //}
 }

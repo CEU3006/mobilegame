@@ -90,23 +90,16 @@ public class MainMenuSystemManager : MonoBehaviour
     {
         musicdata musicdata = new musicdata(Musicon);
         string json=JsonUtility.ToJson(musicdata);
-        //Debug.Log(json);
-        //using (StreamWriter writer = new StreamWriter(Application.persistentDataPath+Path.AltDirectorySeparatorChar+"SaveData.json")) { 
-        //writer.Write(json);
-        //}
         File.WriteAllText(Application.persistentDataPath+"/"+ "SaveData"+".json", json);
 
     }
     public void LoadData()
     {
-        string path=string.Empty;
-        path = "JSONFiles/Monsters/" + "SaveData" + ".json";
-        TextAsset ta=Resources.Load<TextAsset>(path);
-        string json = ta.text;
-        //using(StreamReader reader=new StreamReader(Application.persistentDataPath + Path.AltDirectorySeparatorChar+"SaveData.json"))
-        // {
-        //    json = reader.ReadToEnd();
-        //}
+        string json = null;
+        using (StreamReader reader=new StreamReader(Application.persistentDataPath + Path.AltDirectorySeparatorChar+"SaveData.json"))
+         {
+            json = reader.ReadToEnd();
+        }
         musicdata data =JsonUtility.FromJson<musicdata>(json);
         Musicon=data.Musicon;
         if (Musicon)

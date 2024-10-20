@@ -129,8 +129,11 @@ public class SystemManager : MonoBehaviour
     }
     public void LoadData()
     {
-        string tempPath = Path.Combine(Application.persistentDataPath + "/data/", "SaveData" + ".txt");
-        string json = File.ReadAllText(tempPath);
+        string json = null;
+        using (StreamReader reader = new StreamReader(Application.persistentDataPath + Path.AltDirectorySeparatorChar + "SaveData.json"))
+        {
+            json = reader.ReadToEnd();
+        }
         musicdata data = JsonUtility.FromJson<musicdata>(json);
         Musicon = data.Musicon;
         
