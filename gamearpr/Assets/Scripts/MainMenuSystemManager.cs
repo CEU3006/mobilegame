@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +9,8 @@ public class MainMenuSystemManager : MonoBehaviour
 {
     [SerializeField] GameObject mainMenu;
     [SerializeField] GameObject LevelSelect;
+    [SerializeField] GameObject MultiSelect;
+    public GameObject network;
     [SerializeField] GameObject SettingsSellect;
     [SerializeField] GameObject Musicondisplay;
     [SerializeField] GameObject Musicoffdisplay;
@@ -24,6 +27,7 @@ public class MainMenuSystemManager : MonoBehaviour
         {
             musicsource.Play();
         }
+        network = GameObject.Find("Network");
     }
 
     // Update is called once per frame
@@ -86,6 +90,22 @@ public class MainMenuSystemManager : MonoBehaviour
             musicsource.Stop();
         }
     }
+    public void MultiMenuBut()
+    {
+        mainMenu.SetActive(false);
+        MultiSelect.SetActive(true);
+    }
+    public void Hostbut()
+    {
+        NetworkManager netman=network.GetComponent<NetworkManager>();
+        netman.StartHost();
+    }
+    public void Joinbut()
+    {
+        NetworkManager netman = network.GetComponent<NetworkManager>();
+        netman.StartClient();
+    }
+
     public void saveData()
     {
         musicdata musicdata = new musicdata(Musicon);
