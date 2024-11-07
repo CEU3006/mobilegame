@@ -1,7 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Net.Sockets;
+using System.Net;
+using TMPro;
 using Unity.Netcode;
+using Unity.Netcode.Transports.UTP;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,16 +14,32 @@ public class MainMenuSystemManager : MonoBehaviour
     [SerializeField] GameObject mainMenu;
     [SerializeField] GameObject LevelSelect;
     [SerializeField] GameObject MultiSelect;
+    [SerializeField] GameObject Connectingscreen;
+    [SerializeField] GameObject WaitingScreen;
     public GameObject network;
     [SerializeField] GameObject SettingsSellect;
     [SerializeField] GameObject Musicondisplay;
     [SerializeField] GameObject Musicoffdisplay;
+    [SerializeField] string ipAddress;
+    [SerializeField] UnityTransport transport;
+    [SerializeField] TextMeshProUGUI ipAddressText;
+    [SerializeField] TMP_InputField ip;
+    NetworkManager netman;
     AudioSource musicsource;
+    public int playersConnected;
+    bool waitingforplayer=false;
     //musicdata datam;
     bool Musicon;
     // Start is called before the first frame update
     void Start()
     {
+        netman = network.GetComponent<NetworkManager>();
+        if (netman != null)
+        {
+            // Subscribe to the client connected callback
+            NetworkManager.Singleton.OnClientConnectedCallback += OnPlayerJoin;
+        }
+        ipAddress = "0.0.0.0";
         LoadData();
         musicsource = gameObject.GetComponent<AudioSource>();
         
@@ -29,12 +49,24 @@ public class MainMenuSystemManager : MonoBehaviour
         }
         network = GameObject.Find("Network");
     }
-
+    void OnPlayerJoin(ulong clientId)
+    {
+        Debug.Log($"Player with Client ID {clientId} has joined the game.");
+    }
+    public void SetIpAddress()
+    {
+        transport = NetworkManager.Singleton.GetComponent<UnityTransport>();
+        transport.ConnectionData.Address = ipAddress;
+    }
     // Update is called once per frame
     void Update()
     {
-        
+        if (waitingforplayer)
+        {
+           
+        }
     }
+   
     public void PlayButton()
     {
         mainMenu.SetActive(false);
@@ -97,15 +129,41 @@ public class MainMenuSystemManager : MonoBehaviour
     }
     public void Hostbut()
     {
-        NetworkManager netman=network.GetComponent<NetworkManager>();
         netman.StartHost();
+        MultiSelect.SetActive(false);
+        GetLocalIPAddress();
+        WaitingScreen.SetActive(true);
+        waitingforplayer = true;
+    }
+    public string GetLocalIPAddress()
+    {
+        var host = Dns.GetHostEntry(Dns.GetHostName());
+        foreach (var ip in host.AddressList)
+        {
+            if (ip.AddressFamily == AddressFamily.InterNetwork)
+            {
+                ipAddressText.text = ip.ToString();
+                ipAddress = ip.ToString();
+                return ip.ToString();
+            }
+        }
+        throw new System.Exception("No network adapters with an IPv4 address in the system!");
     }
     public void Joinbut()
     {
-        NetworkManager netman = network.GetComponent<NetworkManager>();
-        netman.StartClient();
-    }
 
+        ipAddress = ip.text;
+        SetIpAddress();
+        netman.StartClient();
+        MultiSelect.SetActive(false);
+       
+
+    }
+    public void returnbacktomainfrommultiplayer()
+    {
+        mainMenu.SetActive(true);
+        MultiSelect.SetActive(false);
+    }
     public void saveData()
     {
         musicdata musicdata = new musicdata(Musicon);
