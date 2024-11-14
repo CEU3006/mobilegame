@@ -33,13 +33,9 @@ public class MainMenuSystemManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        netman = network.GetComponent<NetworkManager>();
-        if (netman != null)
-        {
-            // Subscribe to the client connected callback
-            NetworkManager.Singleton.OnClientConnectedCallback += OnPlayerJoin;
-        }
+        
         ipAddress = "0.0.0.0";
+        SetIpAddress();
         LoadData();
         musicsource = gameObject.GetComponent<AudioSource>();
         
@@ -48,6 +44,12 @@ public class MainMenuSystemManager : MonoBehaviour
             musicsource.Play();
         }
         network = GameObject.Find("Network");
+        netman = network.GetComponent<NetworkManager>();
+        if (netman != null)
+        {
+            // Subscribe to the client connected callback
+            NetworkManager.Singleton.OnClientConnectedCallback += OnPlayerJoin;
+        }
     }
     void OnPlayerJoin(ulong clientId)
     {
@@ -61,9 +63,19 @@ public class MainMenuSystemManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(NetworkManager.Singleton.IsHost)
+        {
+            Debug.Log(NetworkManager.Singleton.ConnectedClients.Count);
+        }
+        if (NetworkManager.Singleton.IsClient)
+        {
+            Debug.Log(NetworkManager.Singleton.IsConnectedClient);
+        }
+
         if (waitingforplayer)
         {
-           
+            GetLocalIPAddress();
+
         }
     }
    
@@ -129,9 +141,10 @@ public class MainMenuSystemManager : MonoBehaviour
     }
     public void Hostbut()
     {
-        netman.StartHost();
         MultiSelect.SetActive(false);
+        NetworkManager.Singleton.StartHost();
         GetLocalIPAddress();
+        SetIpAddress();
         WaitingScreen.SetActive(true);
         waitingforplayer = true;
     }
@@ -153,8 +166,9 @@ public class MainMenuSystemManager : MonoBehaviour
     {
 
         ipAddress = ip.text;
+        Debug.Log(ip.text);
         SetIpAddress();
-        netman.StartClient();
+        NetworkManager.Singleton.StartClient();
         MultiSelect.SetActive(false);
        
 
