@@ -24,6 +24,9 @@ public class MainMenuSystemManager : MonoBehaviour
     [SerializeField] UnityTransport transport;
     [SerializeField] TextMeshProUGUI ipAddressText;
     [SerializeField] TMP_InputField ip;
+    [SerializeField] TextMeshProUGUI test1;
+    [SerializeField] TextMeshProUGUI test2;
+
     NetworkManager netman;
     AudioSource musicsource;
     public int playersConnected;
@@ -57,6 +60,7 @@ public class MainMenuSystemManager : MonoBehaviour
     }
     public void SetIpAddress()
     {
+        //string cleanedIP = System.Text.RegularExpressions.Regex.Replace(ipAddress, "[^0-9.]", "");
         transport = NetworkManager.Singleton.GetComponent<UnityTransport>();
         transport.ConnectionData.Address = ipAddress;
     }
@@ -65,11 +69,11 @@ public class MainMenuSystemManager : MonoBehaviour
     {
         if(NetworkManager.Singleton.IsHost)
         {
-            Debug.Log(NetworkManager.Singleton.ConnectedClients.Count);
+            test1.text=""+NetworkManager.Singleton.ConnectedClients.Count;
         }
         if (NetworkManager.Singleton.IsClient)
         {
-            Debug.Log(NetworkManager.Singleton.IsConnectedClient);
+            test2.text = "" + NetworkManager.Singleton.IsConnectedClient;
         }
 
         if (waitingforplayer)
@@ -144,23 +148,36 @@ public class MainMenuSystemManager : MonoBehaviour
         MultiSelect.SetActive(false);
         NetworkManager.Singleton.StartHost();
         GetLocalIPAddress();
-        SetIpAddress();
         WaitingScreen.SetActive(true);
         waitingforplayer = true;
     }
     public string GetLocalIPAddress()
     {
         var host = Dns.GetHostEntry(Dns.GetHostName());
-        foreach (var ip in host.AddressList)
+        foreach (IPAddress ip in host.AddressList)
         {
             if (ip.AddressFamily == AddressFamily.InterNetwork)
             {
                 ipAddressText.text = ip.ToString();
                 ipAddress = ip.ToString();
                 return ip.ToString();
+
             }
         }
         throw new System.Exception("No network adapters with an IPv4 address in the system!");
+        /*
+        IPHostEntry hostEntry = Dns.GetHostEntry(Dns.GetHostName());
+        foreach (IPAddress ip in hostEntry.AddressList)
+        {
+            if (ip.AddressFamily == AddressFamily.InterNetwork)
+            {
+                ipAddressText.text = ip.ToString();
+                ipAddress = ip.ToString(); 
+                return ip.ToString();
+
+            } //if
+        }
+        /*/
     }
     public void Joinbut()
     {
