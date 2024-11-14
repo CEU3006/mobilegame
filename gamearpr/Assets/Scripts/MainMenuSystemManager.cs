@@ -8,6 +8,7 @@ using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Unity.Services.Relay;
 
 public class MainMenuSystemManager : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class MainMenuSystemManager : MonoBehaviour
     [SerializeField] TMP_InputField ip;
     [SerializeField] TextMeshProUGUI test1;
     [SerializeField] TextMeshProUGUI test2;
-
+    TestRelay relay;
     NetworkManager netman;
     AudioSource musicsource;
     public int playersConnected;
@@ -37,8 +38,9 @@ public class MainMenuSystemManager : MonoBehaviour
     void Start()
     {
         
-        ipAddress = "0.0.0.0";
-        SetIpAddress();
+        //ipAddress = "0.0.0.0";
+        //SetIpAddress();
+
         LoadData();
         musicsource = gameObject.GetComponent<AudioSource>();
         
@@ -53,17 +55,18 @@ public class MainMenuSystemManager : MonoBehaviour
             // Subscribe to the client connected callback
             NetworkManager.Singleton.OnClientConnectedCallback += OnPlayerJoin;
         }
+        relay=network.GetComponent<TestRelay>();
     }
     void OnPlayerJoin(ulong clientId)
     {
         Debug.Log($"Player with Client ID {clientId} has joined the game.");
     }
-    public void SetIpAddress()
-    {
-        //string cleanedIP = System.Text.RegularExpressions.Regex.Replace(ipAddress, "[^0-9.]", "");
-        transport = NetworkManager.Singleton.GetComponent<UnityTransport>();
-        transport.ConnectionData.Address = ipAddress;
-    }
+    //public void SetIpAddress()
+   // {
+   //     //string cleanedIP = System.Text.RegularExpressions.Regex.Replace(ipAddress, "[^0-9.]", "");
+   //     transport = NetworkManager.Singleton.GetComponent<UnityTransport>();
+   //     transport.ConnectionData.Address = ipAddress;
+   // }
     // Update is called once per frame
     void Update()
     {
@@ -76,9 +79,11 @@ public class MainMenuSystemManager : MonoBehaviour
             test2.text = "" + NetworkManager.Singleton.IsConnectedClient;
         }
 
-        if (waitingforplayer)
+       if (waitingforplayer)
         {
-            GetLocalIPAddress();
+            ipAddressText.text = relay.joinCode;
+            //Debug.Log((string)relay.joinCode);
+
 
         }
     }
@@ -146,12 +151,14 @@ public class MainMenuSystemManager : MonoBehaviour
     public void Hostbut()
     {
         MultiSelect.SetActive(false);
-        NetworkManager.Singleton.StartHost();
-        GetLocalIPAddress();
         WaitingScreen.SetActive(true);
+        relay.CreatReley();
+        ipAddressText.text = relay.joinCode;
+       
+        
         waitingforplayer = true;
     }
-    public string GetLocalIPAddress()
+    /*public string GetLocalIPAddress()
     {
         var host = Dns.GetHostEntry(Dns.GetHostName());
         foreach (IPAddress ip in host.AddressList)
@@ -177,15 +184,16 @@ public class MainMenuSystemManager : MonoBehaviour
 
             } //if
         }
-        /*/
+        /
     }
+    */
+
     public void Joinbut()
     {
 
         ipAddress = ip.text;
         Debug.Log(ip.text);
-        SetIpAddress();
-        NetworkManager.Singleton.StartClient();
+        relay.joinReley(ipAddress);
         MultiSelect.SetActive(false);
        
 
