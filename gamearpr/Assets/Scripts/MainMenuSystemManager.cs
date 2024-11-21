@@ -17,6 +17,8 @@ public class MainMenuSystemManager : MonoBehaviour
     [SerializeField] GameObject MultiSelect;
     [SerializeField] GameObject Connectingscreen;
     [SerializeField] GameObject WaitingScreen;
+    [SerializeField] GameObject MultiMenuPickingScreen;
+
     public GameObject network;
     [SerializeField] GameObject SettingsSellect;
     [SerializeField] GameObject Musicondisplay;
@@ -73,10 +75,18 @@ public class MainMenuSystemManager : MonoBehaviour
         if(NetworkManager.Singleton.IsHost)
         {
             test1.text=""+NetworkManager.Singleton.ConnectedClients.Count;
+            if(NetworkManager.Singleton.ConnectedClients.Count==2&& waitingforplayer)
+            {
+                waitingforplayer = false;
+                WaitingScreen.SetActive(false);
+                MultiMenuPickingScreen.SetActive(true);
+
+            }
         }
         if (NetworkManager.Singleton.IsClient)
         {
             test2.text = "" + NetworkManager.Singleton.IsConnectedClient;
+            
         }
 
        if (waitingforplayer)
@@ -87,7 +97,10 @@ public class MainMenuSystemManager : MonoBehaviour
 
         }
     }
-   
+    public void LoadMultMenuSellect()
+    {
+       
+    }
     public void PlayButton()
     {
         mainMenu.SetActive(false);
@@ -101,6 +114,10 @@ public class MainMenuSystemManager : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+    public void EasyButtonMulti()
+    {
+        SceneManager.LoadScene(4);
+    }
     public void ClassicButton()
     {
         SceneManager.LoadScene(2);
@@ -111,8 +128,14 @@ public class MainMenuSystemManager : MonoBehaviour
     }
     public void BackButton()
     {
+        if (NetworkManager.Singleton.IsHost&& NetworkManager.Singleton.IsClient)
+        {
+            relay.disconect();
+        }
         mainMenu.SetActive(true);
         LevelSelect.SetActive(false);
+        MultiSelect.SetActive(false);
+        MultiMenuPickingScreen.SetActive(false );
     }
     public void SttingsButt()
     {
@@ -195,7 +218,7 @@ public class MainMenuSystemManager : MonoBehaviour
         Debug.Log(ip.text);
         relay.joinReley(ipAddress);
         MultiSelect.SetActive(false);
-       
+        Connectingscreen.SetActive(true);
 
     }
     public void returnbacktomainfrommultiplayer()

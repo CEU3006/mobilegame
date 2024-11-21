@@ -61,4 +61,12 @@ public class TestRelay : MonoBehaviour
             Debug.Log(e);   
         }
     }
+    public void disconect()
+    {
+        NetworkManager.Singleton.Shutdown();
+    }
+    public bool isHost()
+    {
+        return NetworkManager.Singleton.IsHost;
+    }
 }
