@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using TMPro;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,6 +21,7 @@ public class SystemManagerMulti : MonoBehaviour
     bool playerOneTurn;
     int playerNum;
     AudioSource musicsource;
+    [SerializeField]GameObject playerprefab;
     bool Musicon;
     private void Start()
     {
@@ -40,6 +42,7 @@ public class SystemManagerMulti : MonoBehaviour
         {
             playerNum = 2;
         }
+        ball = GameObject.Instantiate(playerprefab);
     }
     public void ballAtEnd()
     {
