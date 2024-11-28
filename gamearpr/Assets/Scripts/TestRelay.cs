@@ -35,6 +35,7 @@ public class TestRelay : MonoBehaviour
             Debug.Log(joinCode);
             NetworkManager.Singleton.GetComponent<UnityTransport>().SetHostRelayData(allocation.RelayServer.IpV4, (ushort)allocation.RelayServer.Port, allocation.AllocationIdBytes, allocation.Key, allocation.ConnectionData);
             NetworkManager.Singleton.StartHost();
+            NetworkManager.Singleton.SceneManager.ActiveSceneSynchronizationEnabled = true;
         }
         catch(RelayServiceException e)
         {

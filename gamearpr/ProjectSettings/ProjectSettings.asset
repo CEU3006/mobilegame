@@ -169,7 +169,7 @@ PlayerSettings:
     tvOS: 0
   overrideDefaultApplicationIdentifier: 0
   AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 33
+  AndroidMinSdkVersion: 30
   AndroidTargetSdkVersion: 33
   AndroidPreferredInstallLocation: 1
   aotOptions: 
@@ -905,7 +905,7 @@ PlayerSettings:
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: gamearpr
-  metroPackageVersion: 
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -913,7 +913,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: gamearpr
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: gamearpr
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0

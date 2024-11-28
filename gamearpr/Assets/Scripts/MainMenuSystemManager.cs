@@ -36,6 +36,8 @@ public class MainMenuSystemManager : MonoBehaviour
     bool waitingforplayer=false;
     //musicdata datam;
     bool Musicon;
+    NetworkSceneManager sceneman;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,6 +60,8 @@ public class MainMenuSystemManager : MonoBehaviour
             NetworkManager.Singleton.OnClientConnectedCallback += OnPlayerJoin;
         }
         relay=network.GetComponent<TestRelay>();
+       
+
     }
     void OnPlayerJoin(ulong clientId)
     {
@@ -116,7 +120,7 @@ public class MainMenuSystemManager : MonoBehaviour
     }
     public void EasyButtonMulti()
     {
-        SceneManager.LoadScene(4);
+        NetworkManager.Singleton.SceneManager.LoadScene("ClassicMuliPlayer", LoadSceneMode.Single); SceneManager.LoadScene(4);
     }
     public void ClassicButton()
     {
@@ -178,7 +182,7 @@ public class MainMenuSystemManager : MonoBehaviour
         relay.CreatReley();
         ipAddressText.text = relay.joinCode;
        
-        
+
         waitingforplayer = true;
     }
     /*public string GetLocalIPAddress()
@@ -235,22 +239,33 @@ public class MainMenuSystemManager : MonoBehaviour
     }
     public void LoadData()
     {
-        string json = null;
-        using (StreamReader reader=new StreamReader(Application.persistentDataPath + Path.AltDirectorySeparatorChar+"SaveData.json"))
-         {
-            json = reader.ReadToEnd();
-        }
-        musicdata data =JsonUtility.FromJson<musicdata>(json);
-        Musicon=data.Musicon;
-        if (Musicon)
+        try
         {
-            Musicondisplay.SetActive(true);
-            Musicoffdisplay.SetActive(false);
+            string json = null;
+
+            using (StreamReader reader = new StreamReader(Application.persistentDataPath + Path.AltDirectorySeparatorChar + "SaveData.json"))
+            {
+                json = reader.ReadToEnd();
+            }
+            musicdata data = JsonUtility.FromJson<musicdata>(json);
+            Musicon = data.Musicon;
+            if (Musicon)
+            {
+                Musicondisplay.SetActive(true);
+                Musicoffdisplay.SetActive(false);
+            }
+            else
+            {
+                Musicondisplay.SetActive(false);
+                Musicoffdisplay.SetActive(true);
+            }
         }
-        else
+        catch
         {
-            Musicondisplay.SetActive(false);
-            Musicoffdisplay.SetActive(true);
+            Musicon = true;
+            musicdata musicdata = new musicdata(Musicon);
+            string json = JsonUtility.ToJson(musicdata);
+            File.WriteAllText(Application.persistentDataPath + "/" + "SaveData" + ".json", json);
         }
     }
 }
