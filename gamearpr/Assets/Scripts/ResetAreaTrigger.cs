@@ -12,8 +12,8 @@ public class ResetAreaTrigger : MonoBehaviour
     {
         if (other.gameObject.tag == "ball")
         {
-            systemManagerscript.ballAtEnd();
-            movingscript.Reset();
+            //systemManagerscript.ballAtEnd();
+            //movingscript.Reset();
         }
     }
 }

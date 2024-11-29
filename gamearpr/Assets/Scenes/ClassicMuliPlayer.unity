@@ -1866,6 +1866,8 @@ MonoBehaviour:
   exitBut: {fileID: 648945144}
   net: {fileID: 0}
   playerprefab: {fileID: 1062635897269330498, guid: 5796fefa4ed549f44907d640b6c0da06, type: 3}
+  arSession: {fileID: 0}
+  sesionAR: {fileID: 1816887400}
 --- !u!1 &323466723
 GameObject:
   m_ObjectHideFlags: 0
@@ -4293,6 +4295,7 @@ GameObject:
   - component: {fileID: 1494925918}
   - component: {fileID: 1494925916}
   - component: {fileID: 1494925919}
+  - component: {fileID: 1494925920}
   m_Layer: 5
   m_Name: RollButton
   m_TagString: Untagged
@@ -4363,9 +4366,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Moving, Assembly-CSharp
-        m_MethodName: Buttonclicked
+      - m_Target: {fileID: 1494925920}
+        m_TargetAssemblyTypeName: buttonRollMulti, Assembly-CSharp
+        m_MethodName: onClickofRoll
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4410,6 +4413,18 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &1494925920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1494925914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53581292c20200a46acd0a4c287928b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1497379176
 GameObject:
   m_ObjectHideFlags: 0
@@ -5031,7 +5046,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1816887401
 MonoBehaviour:
   m_ObjectHideFlags: 0

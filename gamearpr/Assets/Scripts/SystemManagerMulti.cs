@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR.ARFoundation;
 
 public class SystemManagerMulti : MonoBehaviour
 {
@@ -23,8 +25,28 @@ public class SystemManagerMulti : MonoBehaviour
     AudioSource musicsource;
     [SerializeField]GameObject playerprefab;
     bool Musicon;
+    public ARSession arSession;
+    bool doonce=true;
+    [SerializeField]GameObject sesionAR;
     private void Start()
     {
+        //if (arSession == null)
+       // {
+       //     arSession = FindObjectOfType<ARSession>();
+       // }
+
+        // If no ARSession is found, log an error and return
+      //  if (arSession == null)
+      //  {
+      //      Debug.LogError("ARSession not found in the scene.");
+      //      return;
+      //  }
+        if (!NetworkManager.Singleton.IsHost) 
+        {
+            sesionAR.SetActive(true);
+            //arSession.enabled = true;  // Enable AR session for clients
+            Debug.Log("AR session enabled for client.");
+        }
         LoadData();
         musicsource = gameObject.GetComponent<AudioSource>();
 
@@ -42,7 +64,65 @@ public class SystemManagerMulti : MonoBehaviour
         {
             playerNum = 2;
         }
-        ball = GameObject.Instantiate(playerprefab);
+        
+        if (NetworkManager.Singleton.IsHost)
+        {
+            ball = Instantiate(playerprefab);
+            NetworkObject networkObject = ball.GetComponent<NetworkObject>();
+            networkObject.SpawnAsPlayerObject(NetworkManager.Singleton.ConnectedClientsList[0].ClientId);
+            //Vector3 ballspawn = new Vector3(0, 30f, 4.54f);
+            GameObject ball_= Instantiate(playerprefab);
+            //ball_.transform.position = ballspawn;
+            NetworkObject networkObject_ = ball_.GetComponent<NetworkObject>();
+            networkObject_.SpawnAsPlayerObject(NetworkManager.Singleton.ConnectedClientsList[1].ClientId);
+
+        }
+        else
+        {
+            GameObject[] balls = GameObject.FindGameObjectsWithTag("ball");
+            foreach (GameObject ball_ in balls)
+            {
+                NetworkObject ballnet = ball_.GetComponent<NetworkObject>();
+                if(ballnet.IsLocalPlayer)
+                {
+                    ball = ball_;
+                }
+            }
+        }
+        
+
+    }
+    private void Update()
+    {
+        if (doonce && NetworkManager.Singleton.IsHost && IsPlayerSceneLoaded(NetworkManager.Singleton.ConnectedClientsList[1].ClientId))
+        {
+            Debug.Log("done");
+            doonce=false;
+            //arSession.Reset();
+            //arSession.enabled = true;  // Enable the session if it was disabled.
+            sesionAR.SetActive(true);
+
+            //arSessionstart
+        }
+    }
+    private bool IsPlayerSceneLoaded(ulong clientId)
+    {
+        foreach (var client in NetworkManager.Singleton.ConnectedClientsList)
+        {
+            // Check if the client has a spawned object (NetworkObject) in the scene.
+            if (client.ClientId == clientId)
+            {
+                // Get the player object associated with the client
+                GameObject playerObject = client.PlayerObject.gameObject;
+
+                // If the player object is not null and active, they are loaded into the scene
+                if (playerObject != null && playerObject.activeInHierarchy)
+                {
+                    return true; // Player is loaded into the scene
+                }
+            }
+        }
+        return false;
     }
     public void ballAtEnd()
     {
