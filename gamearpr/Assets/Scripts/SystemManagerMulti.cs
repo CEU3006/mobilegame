@@ -20,7 +20,7 @@ public class SystemManagerMulti : MonoBehaviour
     [SerializeField] public GameObject exitBut;
     public GameObject net;
     TestRelay netCode;
-    bool playerOneTurn;
+    bool playerOneTurn=true;
     int playerNum;
     AudioSource musicsource;
     [SerializeField]GameObject playerprefab;
@@ -28,23 +28,12 @@ public class SystemManagerMulti : MonoBehaviour
     public ARSession arSession;
     bool doonce=true;
     [SerializeField]GameObject sesionAR;
+    Moving ballscrip;
     private void Start()
     {
-        //if (arSession == null)
-       // {
-       //     arSession = FindObjectOfType<ARSession>();
-       // }
-
-        // If no ARSession is found, log an error and return
-      //  if (arSession == null)
-      //  {
-      //      Debug.LogError("ARSession not found in the scene.");
-      //      return;
-      //  }
         if (!NetworkManager.Singleton.IsHost) 
         {
             sesionAR.SetActive(true);
-            //arSession.enabled = true;  // Enable AR session for clients
             Debug.Log("AR session enabled for client.");
         }
         LoadData();
@@ -70,12 +59,12 @@ public class SystemManagerMulti : MonoBehaviour
             ball = Instantiate(playerprefab);
             NetworkObject networkObject = ball.GetComponent<NetworkObject>();
             networkObject.SpawnAsPlayerObject(NetworkManager.Singleton.ConnectedClientsList[0].ClientId);
-            //Vector3 ballspawn = new Vector3(0, 30f, 4.54f);
+            Vector3 ballspawn = new Vector3(0, 30f, 4.54f);
             GameObject ball_= Instantiate(playerprefab);
-            //ball_.transform.position = ballspawn;
+            ball_.transform.position = ballspawn;
             NetworkObject networkObject_ = ball_.GetComponent<NetworkObject>();
             networkObject_.SpawnAsPlayerObject(NetworkManager.Singleton.ConnectedClientsList[1].ClientId);
-
+            ballscrip = ball.GetComponent<Moving>();
         }
         else
         {
@@ -86,6 +75,8 @@ public class SystemManagerMulti : MonoBehaviour
                 if(ballnet.IsLocalPlayer)
                 {
                     ball = ball_;
+                    ballscrip = ball.GetComponent<Moving>();
+
                 }
             }
         }
@@ -94,90 +85,102 @@ public class SystemManagerMulti : MonoBehaviour
     }
     private void Update()
     {
-        if (doonce && NetworkManager.Singleton.IsHost && IsPlayerSceneLoaded(NetworkManager.Singleton.ConnectedClientsList[1].ClientId))
+        if (doonce && NetworkManager.Singleton.IsHost && IsPlayerSceneLoaded())
         {
             Debug.Log("done");
             doonce=false;
-            //arSession.Reset();
-            //arSession.enabled = true;  // Enable the session if it was disabled.
             sesionAR.SetActive(true);
-
-            //arSessionstart
         }
     }
-    private bool IsPlayerSceneLoaded(ulong clientId)
+    private bool IsPlayerSceneLoaded()
     {
-        foreach (var client in NetworkManager.Singleton.ConnectedClientsList)
-        {
-            // Check if the client has a spawned object (NetworkObject) in the scene.
-            if (client.ClientId == clientId)
-            {
-                // Get the player object associated with the client
-                GameObject playerObject = client.PlayerObject.gameObject;
+        GameObject playerObject = NetworkManager.Singleton.ConnectedClientsList[1].PlayerObject.gameObject;
 
-                // If the player object is not null and active, they are loaded into the scene
-                if (playerObject != null && playerObject.activeInHierarchy)
-                {
-                    return true; // Player is loaded into the scene
-                }
-            }
+        if (playerObject.activeInHierarchy)
+        {
+            return true;
         }
         return false;
     }
-    public void ballAtEnd()
+    public void ballAtEnd(GameObject ball_)
     {
-        GameObject[] pins = GameObject.FindGameObjectsWithTag("pin");
-        int pinsnocked = 0;
-        foreach (GameObject pin in pins)
+        Moving moving2ndBall = ball_.GetComponent<Moving>();
+        Debug.Log("here");
+
+        if (playerOneTurn && playerNum == 1 && ball == ball_)
         {
-            if(pin.transform.rotation.eulerAngles.x > 50|| pin.transform.rotation.eulerAngles.x < -50|| pin.transform.rotation.eulerAngles.z > 50 || pin.transform.rotation.eulerAngles.z < -50)
+            Debug.Log("here");
+
+            if (ballscrip.firstTurn)
             {
-                pinsnocked++;
-                pin.gameObject.SetActive(false);
-                pinsDelete.Add(pin);
-            }
-        }
-        if (!secondPart)
-        {
-            secondPart = true;
-            if (pinsnocked == 9)
-            {
-                pinsnocked = 10;
-                currentscore.x = pinsnocked;
-                //Debug.Log(listOfscores.Count);
-                textMeshPros[listOfscores.Count * 2].GetComponent<TextMeshProUGUI>().text = "" + currentscore.x;
-                secondPart = false;
-                foreach (GameObject pin in pins)
-                {
-                    pinscript pin_script = pin.gameObject.GetComponent<pinscript>();
-                    pin_script.Reset();
-                }
-                foreach (GameObject pin in pinsDelete)
-                {
-                    pin.gameObject.SetActive(true);
-                    pinscript pin_script = pin.gameObject.GetComponent<pinscript>();
-                    pin_script.Reset();
-                }
-                pinsDelete.Clear();
-                currentscore.x = pinsnocked;
-                currentscore.y = 0;
-                listOfscores.Add(currentscore);
-                if (listOfscores.Count >= 4)
-                {
-                    endOfGame();
-                }
+                Debug.Log("here");
+                ballscrip.Reset();
+                playrturn();
             }
             else
             {
-                //Debug.Log(listOfscores.Count);
-                currentscore.x = pinsnocked;
+                Debug.Log("2nd");
 
-                textMeshPros[listOfscores.Count * 2].GetComponent<TextMeshProUGUI>().text = "" + currentscore.x;
-            } 
+                ballscrip.ResetMulti();
+                playrturn();
+                playerOneTurn = !playerOneTurn;
+            }
+
         }
-        else
+        else if (playerOneTurn && !moving2ndBall.firstTurn)
         {
-            secondPart= false;
+            ballscrip.Reset();
+            playerOneTurn = !playerOneTurn;
+            Debug.Log("here");
+        }
+        else if (!playerOneTurn && playerNum == 2 && ball == ball_)
+        {
+            if (ballscrip.firstTurn)
+            {
+                ballscrip.Reset();
+                playrturn();
+                Debug.Log("here");
+
+            }
+            else
+            {
+                ballscrip.ResetMulti();
+                playrturn();
+                playerOneTurn = !playerOneTurn;
+                Debug.Log("here");
+
+            }
+        }
+        else if (!playerOneTurn && !moving2ndBall.firstTurn)
+        {
+            ballscrip.Reset();
+            playerOneTurn = !playerOneTurn;
+            Debug.Log("here");
+
+        }
+    }
+void playrturn()
+{
+    GameObject[] pins = GameObject.FindGameObjectsWithTag("pin");
+    int pinsnocked = 0;
+    foreach (GameObject pin in pins)
+    {
+        if (pin.transform.rotation.eulerAngles.x > 50 || pin.transform.rotation.eulerAngles.x < -50 || pin.transform.rotation.eulerAngles.z > 50 || pin.transform.rotation.eulerAngles.z < -50)
+        {
+            pinsnocked++;
+            pin.gameObject.SetActive(false);
+            pinsDelete.Add(pin);
+        }
+    }
+    if (!secondPart)
+    {
+        secondPart = true;
+        if (pinsnocked == 9)
+        {
+            pinsnocked = 10;
+            currentscore.x = pinsnocked;
+            textMeshPros[listOfscores.Count * 2].GetComponent<TextMeshProUGUI>().text = "" + currentscore.x;
+            secondPart = false;
             foreach (GameObject pin in pins)
             {
                 pinscript pin_script = pin.gameObject.GetComponent<pinscript>();
@@ -190,19 +193,46 @@ public class SystemManagerMulti : MonoBehaviour
                 pin_script.Reset();
             }
             pinsDelete.Clear();
-            currentscore.y = pinsnocked;
+            currentscore.x = pinsnocked;
+            currentscore.y = 0;
             listOfscores.Add(currentscore);
-            textMeshPros[(listOfscores.Count * 2)-1].GetComponent<TextMeshProUGUI>().text = "" + currentscore.y;
-            if(listOfscores.Count>=4)
+            if (listOfscores.Count >= 4)
             {
                 endOfGame();
             }
-            //for (int i = 0; i < listOfscores.Count; i++)
-            //{
-            //    Debug.Log(listOfscores[i]);
-            //}
+        }
+        else
+        {
+            //Debug.Log(listOfscores.Count);
+            currentscore.x = pinsnocked;
+
+            textMeshPros[listOfscores.Count * 2].GetComponent<TextMeshProUGUI>().text = "" + currentscore.x;
         }
     }
+    else
+    {
+        secondPart = false;
+        foreach (GameObject pin in pins)
+        {
+            pinscript pin_script = pin.gameObject.GetComponent<pinscript>();
+            pin_script.Reset();
+        }
+        foreach (GameObject pin in pinsDelete)
+        {
+            pin.gameObject.SetActive(true);
+            pinscript pin_script = pin.gameObject.GetComponent<pinscript>();
+            pin_script.Reset();
+        }
+        pinsDelete.Clear();
+        currentscore.y = pinsnocked;
+        listOfscores.Add(currentscore);
+        textMeshPros[(listOfscores.Count * 2) - 1].GetComponent<TextMeshProUGUI>().text = "" + currentscore.y;
+        if (listOfscores.Count >= 4)
+        {
+            endOfGame();
+        }
+    }
+}
     void endOfGame()
     {
         float total = 0;

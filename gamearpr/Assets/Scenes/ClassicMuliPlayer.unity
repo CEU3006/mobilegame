@@ -1715,7 +1715,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 321515239}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf1c463e421d14b418d184e268ef2d14, type: 3}
   m_Name: 
@@ -1860,7 +1860,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listOfscores: []
   currentscore: {x: 0, y: 0}
-  textMeshPros: []
+  textMeshPros:
+  - {fileID: 348870359}
+  - {fileID: 1725186231}
+  - {fileID: 661948595}
+  - {fileID: 323466723}
+  - {fileID: 1498568169}
+  - {fileID: 961484231}
+  - {fileID: 231159808}
+  - {fileID: 318444692}
+  - {fileID: 116183613}
   ball: {fileID: 0}
   button: {fileID: 1494925914}
   exitBut: {fileID: 648945144}
@@ -3622,6 +3631,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movingscript: {fileID: 0}
   systemManagerscript: {fileID: 321515240}
+  systemmanmulti: {fileID: 321515243}
 --- !u!1 &961484231
 GameObject:
   m_ObjectHideFlags: 0

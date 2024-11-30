@@ -13,8 +13,11 @@ public class Moving : MonoBehaviour
     float pos = 0;
     float ballspeedWhilerolling = 0.5f;
     bool beenPressed = false;
+    bool turn=false;
     Rigidbody rb=null;
     bool inMenu= true;
+
+    public bool firstTurn=true;
     [SerializeField] ulong playerid;
     NetworkObject networkObject = null;
     // Start is called before the first frame update
@@ -31,6 +34,7 @@ public class Moving : MonoBehaviour
 
                 if (NetworkManager.Singleton.IsHost)
                 {
+                    turn = true;
                     //rb.velocity = new Vector3(0, 0, 0);
                     //rb.angularVelocity = Vector3.zero;
                     //transform.eulerAngles = new Vector3(-180, 0, 0);
@@ -38,20 +42,24 @@ public class Moving : MonoBehaviour
                 }
                 if (SceneManager.GetActiveScene().name== "ClassicMuliPlayer")
                 {
-                    //inMenu=false;
+                    inMenu=false;
                 }
                 else
                 {
-                    //inMenu = true;
+                    inMenu = true;
                 }
             }
+        }
+        else
+        {
+            turn = true;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!beenPressed&& !inMenu&& networkObject.IsOwner)
+        if(!beenPressed&& !inMenu&& networkObject.IsOwner&&turn)
         {
             pos += ballspeed * Input.acceleration.normalized.x * Time.deltaTime;
             if (pos > maxvalue)
@@ -60,7 +68,7 @@ public class Moving : MonoBehaviour
                 pos = minvalue;
             transform.position = new Vector3(pos, transform.position.y, transform.position.z);
         }
-        else if( beenPressed&& !inMenu&& networkObject.IsOwner)
+        else if( beenPressed&& !inMenu&& networkObject.IsOwner&&turn)
         {
             float numz = Input.acceleration.normalized.z;
             if (numz > 0.4)
@@ -85,6 +93,7 @@ public class Moving : MonoBehaviour
     }
     public void Reset()
     {
+        firstTurn=!firstTurn;
         pos = 0;
         rb.useGravity = false;
         rb.velocity = new Vector3(0, 0, 0);
@@ -92,5 +101,19 @@ public class Moving : MonoBehaviour
         transform.eulerAngles = new Vector3(-180, 0, 0);
         transform.position = new Vector3(0, -0.11f, 4.54f);
         beenPressed = false;
+        turn = true;
+        
+    }
+    public void ResetMulti()
+    {
+        pos = 0;
+        rb.useGravity = false;
+        rb.velocity = new Vector3(0, 0, 0);
+        rb.angularVelocity = Vector3.zero;
+        transform.eulerAngles = new Vector3(-180, 0, 0);
+        transform.position = new Vector3(0, 30f, 4.54f);
+        beenPressed = true;
+        turn = false;
+
     }
 }
