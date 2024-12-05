@@ -10,33 +10,39 @@
     "m_KnownProcessesForSerialization": [
         {
             "deviceId": "3C201JEKB12833",
-            "name": "com.DefaultCompany.gamearpr",
-            "processId": 14160,
-            "exited": true
-        },
-        {
-            "deviceId": "3C201JEKB12833",
-            "name": "com.DefaultCompany.gamearpr",
-            "processId": 14840,
-            "exited": true
-        },
-        {
-            "deviceId": "3C201JEKB12833",
-            "name": "com.DefaultCompany.gamearpr",
-            "processId": 15647,
-            "exited": true
-        },
-        {
-            "deviceId": "3C201JEKB12833",
             "name": "com.google.android.apps.nexuslauncher",
-            "processId": 22161,
+            "processId": 7651,
             "exited": false
         },
         {
             "deviceId": "3C201JEKB12833",
             "name": "com.DefaultCompany.gamearpr",
-            "processId": 17211,
+            "processId": 23391,
             "exited": true
+        },
+        {
+            "deviceId": "3C201JEKB12833",
+            "name": "com.DefaultCompany.gamearpr",
+            "processId": 26080,
+            "exited": true
+        },
+        {
+            "deviceId": "3C201JEKB12833",
+            "name": "com.DefaultCompany.gamearpr",
+            "processId": 27996,
+            "exited": true
+        },
+        {
+            "deviceId": "3C201JEKB12833",
+            "name": "com.DefaultCompany.gamearpr",
+            "processId": 28632,
+            "exited": true
+        },
+        {
+            "deviceId": "3C201JEKB12833",
+            "name": "com.whatsapp",
+            "processId": 26601,
+            "exited": false
         }
     ],
     "m_Tags": {

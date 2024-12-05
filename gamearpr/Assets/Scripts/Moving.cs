@@ -19,7 +19,7 @@ public class Moving : MonoBehaviour
     bool inMenu= true;
 
     public bool firstTurn=true;
-    [SerializeField] ulong playerid;
+    [SerializeField] public int playerid;
     NetworkObject networkObject = null;
     // Start is called before the first frame update
     void Start()
@@ -27,9 +27,9 @@ public class Moving : MonoBehaviour
         
         rb = GetComponent<Rigidbody>();
         rb.useGravity = false;
-
         if (NetworkManager.Singleton.IsConnectedClient || NetworkManager.Singleton.IsHost)
         {
+            doonce = false;
             networkObject = gameObject.GetComponent<NetworkObject>();
 
             if (networkObject.IsOwner)
@@ -38,14 +38,20 @@ public class Moving : MonoBehaviour
                 if (NetworkManager.Singleton.IsHost)
                 {
                     turn = true;
+                    playerid = 1;
                     //rb.velocity = new Vector3(0, 0, 0);
                     //rb.angularVelocity = Vector3.zero;
                     //transform.eulerAngles = new Vector3(-180, 0, 0);
                     //transform.position = new Vector3(0, 0.11f, 4.54f);
                 }
-                if (SceneManager.GetActiveScene().name== "ClassicMuliPlayer")
+                else
                 {
-                    inMenu=false;
+                    playerid = 2;
+
+                }
+                if (SceneManager.GetActiveScene().name == "ClassicMuliPlayer")
+                {
+                    inMenu = false;
                 }
                 else
                 {
@@ -58,8 +64,10 @@ public class Moving : MonoBehaviour
             inMenu = false;
             turn = true;
         }
+
     }
 
+    bool doonce = true;
     // Update is called once per frame
     void Update()
     {

@@ -21,13 +21,16 @@ public class ResetAreaTrigger : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("This is not");
         if (other.gameObject.tag == "ball"&&!isMulti)
         {
+            Debug.Log("This is prob");
             systemManagerscript.ballAtEnd();
             movingscript.Reset();
         }
         else if(other.gameObject.tag == "ball" && isMulti)
         {
+            Debug.Log("This is prob");
             systemmanmulti.ballAtEnd(other.gameObject);
         }
     }
