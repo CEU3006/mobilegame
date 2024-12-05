@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -26,9 +27,11 @@ public class Moving : MonoBehaviour
         
         rb = GetComponent<Rigidbody>();
         rb.useGravity = false;
+
         if (NetworkManager.Singleton.IsConnectedClient || NetworkManager.Singleton.IsHost)
         {
-            networkObject=gameObject.GetComponent<NetworkObject>();
+            networkObject = gameObject.GetComponent<NetworkObject>();
+
             if (networkObject.IsOwner)
             {
 
@@ -52,6 +55,7 @@ public class Moving : MonoBehaviour
         }
         else
         {
+            inMenu = false;
             turn = true;
         }
     }
@@ -59,7 +63,7 @@ public class Moving : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!beenPressed&& !inMenu&& networkObject.IsOwner&&turn)
+        if(!beenPressed&& !inMenu&& (networkObject == null||networkObject.IsOwner)&&turn)
         {
             pos += ballspeed * Input.acceleration.normalized.x * Time.deltaTime;
             if (pos > maxvalue)
@@ -68,7 +72,7 @@ public class Moving : MonoBehaviour
                 pos = minvalue;
             transform.position = new Vector3(pos, transform.position.y, transform.position.z);
         }
-        else if( beenPressed&& !inMenu&& networkObject.IsOwner&&turn)
+        else if( beenPressed&& !inMenu&& (networkObject == null || networkObject.IsOwner)&& turn)
         {
             float numz = Input.acceleration.normalized.z;
             if (numz > 0.4)
@@ -85,7 +89,7 @@ public class Moving : MonoBehaviour
     }
     public void Buttonclicked()
     {
-        if (!beenPressed&& networkObject.IsOwner)
+        if (!beenPressed&& (networkObject==null||networkObject.IsOwner)&& turn)
         {
             beenPressed=true;
             rb.useGravity=true;

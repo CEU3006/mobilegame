@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using TMPro;
 using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR.ARFoundation;
@@ -102,6 +103,7 @@ public class SystemManagerMulti : MonoBehaviour
         }
         return false;
     }
+    bool check = false;
     public void ballAtEnd(GameObject ball_)
     {
         Moving moving2ndBall = ball_.GetComponent<Moving>();
@@ -159,7 +161,8 @@ public class SystemManagerMulti : MonoBehaviour
 
         }
     }
-void playrturn()
+  
+    void playrturn()
 {
     GameObject[] pins = GameObject.FindGameObjectsWithTag("pin");
     int pinsnocked = 0;
