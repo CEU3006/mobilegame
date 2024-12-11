@@ -1,31 +1,13 @@
 {
     "m_SelectedDeviceId": "3C201JEKB12833",
     "m_SelectedProcess": {
-        "deviceId": "",
-        "name": "",
-        "processId": 0,
+        "deviceId": "3C201JEKB12833",
+        "name": "com.DefaultCompany.gamearpr",
+        "processId": 27198,
         "exited": false
     },
     "m_SelectedPriority": 0,
     "m_KnownProcessesForSerialization": [
-        {
-            "deviceId": "3C201JEKB12833",
-            "name": "com.google.android.apps.nexuslauncher",
-            "processId": 7651,
-            "exited": false
-        },
-        {
-            "deviceId": "3C201JEKB12833",
-            "name": "com.DefaultCompany.gamearpr",
-            "processId": 23391,
-            "exited": true
-        },
-        {
-            "deviceId": "3C201JEKB12833",
-            "name": "com.DefaultCompany.gamearpr",
-            "processId": 26080,
-            "exited": true
-        },
         {
             "deviceId": "3C201JEKB12833",
             "name": "com.DefaultCompany.gamearpr",
@@ -42,6 +24,60 @@
             "deviceId": "3C201JEKB12833",
             "name": "com.whatsapp",
             "processId": 26601,
+            "exited": true
+        },
+        {
+            "deviceId": "3C201JEKB12833",
+            "name": "com.DefaultCompany.gamearpr",
+            "processId": 5602,
+            "exited": true
+        },
+        {
+            "deviceId": "3C201JEKB12833",
+            "name": "com.google.android.apps.nexuslauncher",
+            "processId": 17295,
+            "exited": false
+        },
+        {
+            "deviceId": "3C201JEKB12833",
+            "name": "com.DefaultCompany.gamearpr",
+            "processId": 8632,
+            "exited": false
+        },
+        {
+            "deviceId": "3C201JEKB12833",
+            "name": "com.DefaultCompany.gamearpr",
+            "processId": 9708,
+            "exited": false
+        },
+        {
+            "deviceId": "3C201JEKB12833",
+            "name": "com.DefaultCompany.gamearpr",
+            "processId": 11781,
+            "exited": false
+        },
+        {
+            "deviceId": "3C201JEKB12833",
+            "name": "com.DefaultCompany.gamearpr",
+            "processId": 19149,
+            "exited": false
+        },
+        {
+            "deviceId": "3C201JEKB12833",
+            "name": "com.DefaultCompany.gamearpr",
+            "processId": 21224,
+            "exited": false
+        },
+        {
+            "deviceId": "3C201JEKB12833",
+            "name": "com.DefaultCompany.gamearpr",
+            "processId": 25326,
+            "exited": false
+        },
+        {
+            "deviceId": "3C201JEKB12833",
+            "name": "com.DefaultCompany.gamearpr",
+            "processId": 27198,
             "exited": false
         }
     ],

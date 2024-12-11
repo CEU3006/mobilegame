@@ -67,13 +67,7 @@ public class MainMenuSystemManager : MonoBehaviour
     {
         Debug.Log($"Player with Client ID {clientId} has joined the game.");
     }
-    //public void SetIpAddress()
-   // {
-   //     //string cleanedIP = System.Text.RegularExpressions.Regex.Replace(ipAddress, "[^0-9.]", "");
-   //     transport = NetworkManager.Singleton.GetComponent<UnityTransport>();
-   //     transport.ConnectionData.Address = ipAddress;
-   // }
-    // Update is called once per frame
+   
     void Update()
     {
         if(NetworkManager.Singleton.IsHost)
@@ -126,9 +120,17 @@ public class MainMenuSystemManager : MonoBehaviour
     {
         SceneManager.LoadScene(2);
     }
+    public void ClassicButtonMulti()
+    {
+        NetworkManager.Singleton.SceneManager.LoadScene("ClassicMuliPlayer", LoadSceneMode.Single); SceneManager.LoadScene(5);
+    }
     public void ArcadeButton()
     {
         SceneManager.LoadScene(3);
+    }
+    public void ArcadeButtonMulti()
+    {
+        NetworkManager.Singleton.SceneManager.LoadScene("ClassicMuliPlayer", LoadSceneMode.Single); SceneManager.LoadScene(6);
     }
     public void BackButton()
     {
@@ -185,35 +187,6 @@ public class MainMenuSystemManager : MonoBehaviour
 
         waitingforplayer = true;
     }
-    /*public string GetLocalIPAddress()
-    {
-        var host = Dns.GetHostEntry(Dns.GetHostName());
-        foreach (IPAddress ip in host.AddressList)
-        {
-            if (ip.AddressFamily == AddressFamily.InterNetwork)
-            {
-                ipAddressText.text = ip.ToString();
-                ipAddress = ip.ToString();
-                return ip.ToString();
-
-            }
-        }
-        throw new System.Exception("No network adapters with an IPv4 address in the system!");
-        /*
-        IPHostEntry hostEntry = Dns.GetHostEntry(Dns.GetHostName());
-        foreach (IPAddress ip in hostEntry.AddressList)
-        {
-            if (ip.AddressFamily == AddressFamily.InterNetwork)
-            {
-                ipAddressText.text = ip.ToString();
-                ipAddress = ip.ToString(); 
-                return ip.ToString();
-
-            } //if
-        }
-        /
-    }
-    */
 
     public void Joinbut()
     {

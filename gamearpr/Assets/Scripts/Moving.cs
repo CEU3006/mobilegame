@@ -49,7 +49,7 @@ public class Moving : MonoBehaviour
                     playerid = 2;
 
                 }
-                if (SceneManager.GetActiveScene().name == "ClassicMuliPlayer")
+                if (SceneManager.GetActiveScene().name != "MainMenu")
                 {
                     inMenu = false;
                 }

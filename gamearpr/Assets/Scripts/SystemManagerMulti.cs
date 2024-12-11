@@ -16,30 +16,32 @@ public class SystemManagerMulti : MonoBehaviour
     bool secondPart = false;
     public Vector2 currentscore = Vector2.zero;
     int currentEntryOfEnemyScore = 0;
-    List<GameObject> pinsDelete= new List<GameObject>();
-    [SerializeField]public List< GameObject> textMeshPros = new List<GameObject>();
+    List<GameObject> pinsDelete = new List<GameObject>();
+    [SerializeField] public List<GameObject> textMeshPros = new List<GameObject>();
     [SerializeField] public List<GameObject> textMeshProsForEnemy = new List<GameObject>();
-
+    [SerializeField] GameObject textforwinorloss;
     [SerializeField] public GameObject ball;
     [SerializeField] public GameObject button;
     [SerializeField] public GameObject exitBut;
+    [SerializeField] public GameObject prefabforcube;
+
     SendDataNetcode getDataAndSend;
     public GameObject net;
     TestRelay netCode;
-    bool playerOneTurn=true;
+    bool playerOneTurn = true;
     int playerNum;
     AudioSource musicsource;
-    [SerializeField]GameObject playerprefab;
+    [SerializeField] GameObject playerprefab;
     [SerializeField] GameObject conePreFab;
     [SerializeField] Vector3[] ConeLocs;
     bool Musicon;
     public ARSession arSession;
-    bool doonce=true;
-    [SerializeField]GameObject sesionAR;
+    bool doonce = true;
+    [SerializeField] GameObject sesionAR;
     Moving ballscrip;
     private void Start()
     {
-        if (!NetworkManager.Singleton.IsHost) 
+        if (!NetworkManager.Singleton.IsHost)
         {
             sesionAR.SetActive(true);
             Debug.Log("AR session enabled for client.");
@@ -52,7 +54,7 @@ public class SystemManagerMulti : MonoBehaviour
             musicsource.Play();
         }
         net = GameObject.Find("Network");
-        netCode= net.GetComponent<TestRelay>();
+        netCode = net.GetComponent<TestRelay>();
         if (netCode.isHost())
         {
             playerNum = 1;
@@ -61,27 +63,38 @@ public class SystemManagerMulti : MonoBehaviour
         {
             playerNum = 2;
         }
-        
+
         if (NetworkManager.Singleton.IsHost)
         {
             ball = Instantiate(playerprefab);
             NetworkObject networkObject = ball.GetComponent<NetworkObject>();
             networkObject.SpawnAsPlayerObject(NetworkManager.Singleton.ConnectedClientsList[0].ClientId);
             Vector3 ballspawn = new Vector3(0, 30f, 4.54f);
-            GameObject ball_= Instantiate(playerprefab);
+            GameObject ball_ = Instantiate(playerprefab);
             ball_.transform.position = ballspawn;
             NetworkObject networkObject_ = ball_.GetComponent<NetworkObject>();
             ulong clientid = NetworkManager.Singleton.ConnectedClientsList[1].ClientId;
             networkObject_.SpawnAsPlayerObject(clientid);
             ballscrip = ball.GetComponent<Moving>();
             getDataAndSend = ball.GetComponent<SendDataNetcode>();
-            for (int i=0; i<ConeLocs.Count();i++)
+            for (int i = 0; i < ConeLocs.Count(); i++)
             {
                 GameObject cone = Instantiate(conePreFab);
                 cone.transform.position = ConeLocs[i];
                 NetworkObject networkObjectCone = cone.GetComponent<NetworkObject>();
                 networkObjectCone.Spawn();
             }
+            if (SceneManager.GetActiveScene().name == "ArcadeMulti")
+            {
+                Debug.Log("chack");
+                GameObject myObject = Instantiate(prefabforcube, new Vector3(-0.4565804f, -0.5676398f, 6.192709f), Quaternion.identity);
+                myObject.GetComponent<NetworkObject>().Spawn();
+                GameObject myObject2 = Instantiate(prefabforcube, new Vector3(0.1778743f, -0.5676401f, 7.712997f), Quaternion.identity);
+                myObject2.GetComponent<NetworkObject>().Spawn();
+                GameObject myObject3 = Instantiate(prefabforcube, new Vector3(0.755f, -0.56764f, 9.213f), Quaternion.identity);
+                myObject3.GetComponent<NetworkObject>().Spawn();
+            }
+
         }
         else
         {
@@ -89,7 +102,7 @@ public class SystemManagerMulti : MonoBehaviour
             foreach (GameObject ball_ in balls)
             {
                 NetworkObject ballnet = ball_.GetComponent<NetworkObject>();
-                if(ballnet.IsLocalPlayer)
+                if (ballnet.IsLocalPlayer)
                 {
                     ball = ball_;
                     ballscrip = ball.GetComponent<Moving>();
@@ -99,7 +112,7 @@ public class SystemManagerMulti : MonoBehaviour
                 }
             }
         }
-        
+
 
     }
     private void Update()
@@ -107,7 +120,7 @@ public class SystemManagerMulti : MonoBehaviour
         if (doonce && NetworkManager.Singleton.IsHost && IsPlayerSceneLoaded())
         {
             Debug.Log("done");
-            doonce=false;
+            doonce = false;
             sesionAR.SetActive(true);
         }
     }
@@ -126,7 +139,7 @@ public class SystemManagerMulti : MonoBehaviour
         Moving moving2ndBall = ball_.GetComponent<Moving>();
         Debug.Log("here");
 
-        if (playerOneTurn && playerNum == 1 && moving2ndBall.playerid==ballscrip.playerid)
+        if (playerOneTurn && playerNum == 1 && moving2ndBall.playerid == ballscrip.playerid)
         {
             Debug.Log("here");
 
@@ -135,10 +148,10 @@ public class SystemManagerMulti : MonoBehaviour
                 Debug.Log("here");
                 ballscrip.Reset();
                 playrturn();
-               
+
                 getDataAndSend.ballAtEndSendToClientRpc();
 
-               
+
             }
             else
             {
@@ -150,8 +163,8 @@ public class SystemManagerMulti : MonoBehaviour
                 Debug.Log("cheking here");
 
 
-               
-                
+
+
 
             }
 
@@ -163,7 +176,7 @@ public class SystemManagerMulti : MonoBehaviour
                 ballscrip.Reset();
                 playrturn();
                 Debug.Log("here");
-                
+
                 getDataAndSend.ballAtEndSendToSeverRpc();
 
             }
@@ -190,8 +203,8 @@ public class SystemManagerMulti : MonoBehaviour
         foreach (GameObject pin in pins2)
         {
             Debug.Log("works maybe");
-            
-            
+
+
             NetworkObject cone = pin.GetComponent<NetworkObject>();
             cone.ChangeOwnership(NetworkManager.Singleton.ConnectedClientsList[1].ClientId);
             yield return null;
@@ -206,12 +219,12 @@ public class SystemManagerMulti : MonoBehaviour
 
 
     }
-   
 
-    bool otherPlayerSecoundTurn=false;
+
+    bool otherPlayerSecoundTurn = false;
     public void UpdateFromOther()
     {
-         if (otherPlayerSecoundTurn)
+        if (otherPlayerSecoundTurn)
         {
             if (NetworkManager.Singleton.IsHost)
             {
@@ -221,7 +234,7 @@ public class SystemManagerMulti : MonoBehaviour
                 {
                     NetworkObject cone = pin.GetComponent<NetworkObject>();
                     cone.ChangeOwnership(NetworkManager.Singleton.ConnectedClientsList[0].ClientId);
-                   
+
                 }
 
             }
@@ -237,31 +250,31 @@ public class SystemManagerMulti : MonoBehaviour
 
             Debug.Log("this is working");
             ballscrip.Reset();
-            ballscrip.firstTurn=true; 
+            ballscrip.firstTurn = true;
             otherPlayerSecoundTurn = false;
             Debug.Log("here");
             playerOneTurn = !playerOneTurn;
         }
         else
         {
-            otherPlayerSecoundTurn=true;
+            otherPlayerSecoundTurn = true;
         }
     }
-  
+
     void playrturn()
-{
-    GameObject[] pins = GameObject.FindGameObjectsWithTag("pin");
-    int pinsnocked = 0;
-    foreach (GameObject pin in pins)
     {
-        if (pin.transform.rotation.eulerAngles.x > 50 || pin.transform.rotation.eulerAngles.x < -50 || pin.transform.rotation.eulerAngles.z > 50 || pin.transform.rotation.eulerAngles.z < -50)
+        GameObject[] pins = GameObject.FindGameObjectsWithTag("pin");
+        int pinsnocked = 0;
+        foreach (GameObject pin in pins)
         {
-            pinsnocked++;
+            if (pin.transform.rotation.eulerAngles.x > 50 || pin.transform.rotation.eulerAngles.x < -50 || pin.transform.rotation.eulerAngles.z > 50 || pin.transform.rotation.eulerAngles.z < -50)
+            {
+                pinsnocked++;
                 pin.transform.position = new Vector3(10, -10, 10);
-            pin.gameObject.SetActive(false);
-            pinsDelete.Add(pin);
+                pin.gameObject.SetActive(false);
+                pinsDelete.Add(pin);
+            }
         }
-    }
         if (!secondPart)
         {
             secondPart = true;
@@ -271,7 +284,7 @@ public class SystemManagerMulti : MonoBehaviour
 
                 currentscore.x = pinsnocked;
                 textMeshPros[listOfscores.Count * 2].GetComponent<TextMeshProUGUI>().text = "" + currentscore.x;
-                if(NetworkManager.Singleton.IsHost)
+                if (NetworkManager.Singleton.IsHost)
                 {
                     getDataAndSend.SendDataToClientRpc((int)currentscore.x);
                 }
@@ -316,7 +329,7 @@ public class SystemManagerMulti : MonoBehaviour
             foreach (GameObject pin in pinsDelete)
             {
                 pin.gameObject.SetActive(true);
-                
+
             }
             pinsDelete.Clear();
             currentscore.y = pinsnocked;
@@ -335,11 +348,12 @@ public class SystemManagerMulti : MonoBehaviour
                 endOfGame();
             }
         }
-}
+    }
+    float total = 0;
     void endOfGame()
     {
-        float total = 0;
-        for(int i = 0; listOfscores.Count>i;i++)
+        total = 0;
+        for (int i = 0; listOfscores.Count > i; i++)
         {
             total += listOfscores[i].x + listOfscores[i].y;
         }
@@ -354,8 +368,24 @@ public class SystemManagerMulti : MonoBehaviour
         }
         ball.SetActive(false);
         button.SetActive(false);
-        exitBut.SetActive(true);
+        if (!NetworkManager.Singleton.IsHost)
+        {
+            exitBut.SetActive(true);
+            if (enemyTotalScore < total)
+            {
+                textforwinorloss.GetComponent<TextMeshProUGUI>().text = "You Won";
+            }
+            else if (enemyTotalScore > total)
+            {
+                textforwinorloss.GetComponent<TextMeshProUGUI>().text = "You Lost";
+            }
+            else
+            {
+                textforwinorloss.GetComponent<TextMeshProUGUI>().text = "You Draw";
+            }
+        }
     }
+    float enemyTotalScore;
     public void BackToMainMenu()
     {
         Admanager.instance.addscrip.ShowAd();
@@ -363,10 +393,28 @@ public class SystemManagerMulti : MonoBehaviour
     }
     public void addEnemyScore(int a)
     {
-        if(currentEntryOfEnemyScore==8)
+        if (currentEntryOfEnemyScore == 8)
         {
+            enemyTotalScore = a;
             textMeshProsForEnemy[currentEntryOfEnemyScore].GetComponent<TextMeshProUGUI>().text = "Total" + a;
-
+            if (NetworkManager.Singleton.IsHost)
+            {
+               
+                    exitBut.SetActive(true);
+                if (enemyTotalScore < total)
+                {
+                    textforwinorloss.GetComponent<TextMeshProUGUI>().text = "You Won";
+                }
+                else if (enemyTotalScore > total)
+                {
+                    textforwinorloss.GetComponent<TextMeshProUGUI>().text = "You Lost";
+                }
+                else
+                {
+                    textforwinorloss.GetComponent<TextMeshProUGUI>().text = "You Draw";
+                }
+                
+            }
         }
         else
         {
@@ -388,7 +436,7 @@ public class SystemManagerMulti : MonoBehaviour
         }
         musicdata data = JsonUtility.FromJson<musicdata>(json);
         Musicon = data.Musicon;
-        
+
     }
 }
 

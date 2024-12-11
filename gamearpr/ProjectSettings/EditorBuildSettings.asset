@@ -18,8 +18,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Arcade.unity
     guid: cc71109d25f0eae48b6a5af6078c5b84
   - enabled: 1
+    path: Assets/Scenes/EasyMuli.unity
+    guid: b52e822fca2ba304ca64ca44cfe304d2
+  - enabled: 1
     path: Assets/Scenes/ClassicMuliPlayer.unity
     guid: e64bee3f5493609458dcc1442defa047
+  - enabled: 1
+    path: Assets/Scenes/ArcadeMulti.unity
+    guid: 4253767e19399e84bbfbb1443b1e582a
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: e983811817e200649863bed8e62c5291, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: c617a5ee39930a44cb4cf79429ccb182, type: 2}

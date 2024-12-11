@@ -5266,7 +5266,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 290401147}
         m_TargetAssemblyTypeName: MainMenuSystemManager, Assembly-CSharp
-        m_MethodName: ArcadeButton
+        m_MethodName: ArcadeButtonMulti
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5933,7 +5933,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 290401147}
         m_TargetAssemblyTypeName: MainMenuSystemManager, Assembly-CSharp
-        m_MethodName: ClassicButton
+        m_MethodName: ClassicButtonMulti
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
