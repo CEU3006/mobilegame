@@ -121,6 +121,7 @@ public class SystemManager : MonoBehaviour
     public void BackToMainMenu()
     {
         Admanager.instance.addscrip.ShowAd();
+        Admanager.instance.bannerscrip.ShowBannerAd();
         SceneManager.LoadScene(0);
     }
     public void AlowExit()

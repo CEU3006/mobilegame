@@ -9,6 +9,7 @@ using Unity.Netcode.Transports.UTP;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Unity.Services.Relay;
+using System;
 
 public class MainMenuSystemManager : MonoBehaviour
 {
@@ -33,7 +34,7 @@ public class MainMenuSystemManager : MonoBehaviour
     NetworkManager netman;
     AudioSource musicsource;
     public int playersConnected;
-    bool waitingforplayer=false;
+    bool waitingforplayer = false;
     //musicdata datam;
     bool Musicon;
     NetworkSceneManager sceneman;
@@ -41,13 +42,13 @@ public class MainMenuSystemManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
         //ipAddress = "0.0.0.0";
         //SetIpAddress();
 
         LoadData();
         musicsource = gameObject.GetComponent<AudioSource>();
-        
+
         if (Musicon)
         {
             musicsource.Play();
@@ -57,23 +58,38 @@ public class MainMenuSystemManager : MonoBehaviour
         if (netman != null)
         {
             // Subscribe to the client connected callback
-            NetworkManager.Singleton.OnClientConnectedCallback += OnPlayerJoin;
+            NetworkManager.Singleton.OnClientDisconnectCallback += OnPlayerDiss;
         }
-        relay=network.GetComponent<TestRelay>();
-       
+        relay = network.GetComponent<TestRelay>();
+
 
     }
     void OnPlayerJoin(ulong clientId)
     {
         Debug.Log($"Player with Client ID {clientId} has joined the game.");
     }
-   
+    void OnPlayerDiss(ulong clientId)
+    {
+        onWantingtoleave();
+    }
+    public void onWantingtoleave()
+    {
+        //SceneManager.LoadScene(0);
+        if (SceneManager.GetActiveScene().name == "MainMenu")
+        {
+            MultiSelect.SetActive(true);
+            Connectingscreen.SetActive(false);
+            MultiMenuPickingScreen.SetActive(false);
+            WaitingScreen.SetActive(false);
+            NetworkManager.Singleton.Shutdown();
+        }
+    }
     void Update()
     {
-        if(NetworkManager.Singleton.IsHost)
+        if (NetworkManager.Singleton.IsHost)
         {
-            test1.text=""+NetworkManager.Singleton.ConnectedClients.Count;
-            if(NetworkManager.Singleton.ConnectedClients.Count==2&& waitingforplayer)
+            test1.text = "" + NetworkManager.Singleton.ConnectedClients.Count;
+            if (NetworkManager.Singleton.ConnectedClients.Count == 2 && waitingforplayer)
             {
                 waitingforplayer = false;
                 WaitingScreen.SetActive(false);
@@ -84,20 +100,25 @@ public class MainMenuSystemManager : MonoBehaviour
         if (NetworkManager.Singleton.IsClient)
         {
             test2.text = "" + NetworkManager.Singleton.IsConnectedClient;
-            
-        }
 
-       if (waitingforplayer)
+        }
+        if (relay.joinedFail)
+        {
+            relay.joinedFail = true;
+            MultiSelect.SetActive(true);
+            Connectingscreen.SetActive(false);
+        }
+        if (waitingforplayer)
         {
             ipAddressText.text = relay.joinCode;
             //Debug.Log((string)relay.joinCode);
 
-
         }
     }
+
     public void LoadMultMenuSellect()
     {
-       
+
     }
     public void PlayButton()
     {
@@ -110,38 +131,55 @@ public class MainMenuSystemManager : MonoBehaviour
     }
     public void EasyButton()
     {
+        Admanager.instance.bannerscrip.HidBannerAd();
         SceneManager.LoadScene(1);
     }
     public void EasyButtonMulti()
     {
+        Admanager.instance.bannerscrip.HidBannerAd();
+
         NetworkManager.Singleton.SceneManager.LoadScene("ClassicMuliPlayer", LoadSceneMode.Single); SceneManager.LoadScene(4);
+        NetworkManager.Singleton.OnClientConnectedCallback -= OnPlayerDiss;
+
     }
     public void ClassicButton()
     {
+        Admanager.instance.bannerscrip.HidBannerAd();
+
         SceneManager.LoadScene(2);
     }
     public void ClassicButtonMulti()
     {
+        Admanager.instance.bannerscrip.HidBannerAd();
+
         NetworkManager.Singleton.SceneManager.LoadScene("ClassicMuliPlayer", LoadSceneMode.Single); SceneManager.LoadScene(5);
+        NetworkManager.Singleton.OnClientConnectedCallback -= OnPlayerDiss;
+
     }
     public void ArcadeButton()
     {
+        Admanager.instance.bannerscrip.HidBannerAd();
+
         SceneManager.LoadScene(3);
     }
     public void ArcadeButtonMulti()
     {
+        Admanager.instance.bannerscrip.HidBannerAd();
+
         NetworkManager.Singleton.SceneManager.LoadScene("ClassicMuliPlayer", LoadSceneMode.Single); SceneManager.LoadScene(6);
+        NetworkManager.Singleton.OnClientConnectedCallback -= OnPlayerDiss;
+
     }
     public void BackButton()
     {
-        if (NetworkManager.Singleton.IsHost&& NetworkManager.Singleton.IsClient)
+        if (NetworkManager.Singleton.IsHost && NetworkManager.Singleton.IsClient)
         {
             relay.disconect();
         }
         mainMenu.SetActive(true);
         LevelSelect.SetActive(false);
         MultiSelect.SetActive(false);
-        MultiMenuPickingScreen.SetActive(false );
+        MultiMenuPickingScreen.SetActive(false);
     }
     public void SttingsButt()
     {
@@ -157,7 +195,7 @@ public class MainMenuSystemManager : MonoBehaviour
     public void MusicButton()
     {
         Musicon = !Musicon;
-        if(Musicon)
+        if (Musicon)
         {
             saveData();
             Musicondisplay.SetActive(true);
@@ -183,7 +221,7 @@ public class MainMenuSystemManager : MonoBehaviour
         WaitingScreen.SetActive(true);
         relay.CreatReley();
         ipAddressText.text = relay.joinCode;
-       
+
 
         waitingforplayer = true;
     }
@@ -193,10 +231,14 @@ public class MainMenuSystemManager : MonoBehaviour
 
         ipAddress = ip.text;
         Debug.Log(ip.text);
-        relay.joinReley(ipAddress);
-        MultiSelect.SetActive(false);
-        Connectingscreen.SetActive(true);
+        ipAddress = ipAddress.Trim();
+        if (ipAddress != "")
+        {
+            MultiSelect.SetActive(false);
+            Connectingscreen.SetActive(true);
+            relay.joinReley(ipAddress);
 
+        }
     }
     public void returnbacktomainfrommultiplayer()
     {
@@ -206,8 +248,8 @@ public class MainMenuSystemManager : MonoBehaviour
     public void saveData()
     {
         musicdata musicdata = new musicdata(Musicon);
-        string json=JsonUtility.ToJson(musicdata);
-        File.WriteAllText(Application.persistentDataPath+"/"+ "SaveData"+".json", json);
+        string json = JsonUtility.ToJson(musicdata);
+        File.WriteAllText(Application.persistentDataPath + "/" + "SaveData" + ".json", json);
 
     }
     public void LoadData()

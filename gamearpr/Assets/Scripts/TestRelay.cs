@@ -15,10 +15,13 @@ public class TestRelay : MonoBehaviour
     private async void  Start()
     {
         await UnityServices.InitializeAsync();
-        AuthenticationService.Instance.SignedIn += () =>{
-            Debug.Log("signed in"+AuthenticationService.Instance.PlayerId);
-        };
-        await AuthenticationService.Instance.SignInAnonymouslyAsync();
+        if (!AuthenticationService.Instance.IsSignedIn)
+        {
+            AuthenticationService.Instance.SignedIn += () => {
+                Debug.Log("signed in" + AuthenticationService.Instance.PlayerId);
+            };
+            await AuthenticationService.Instance.SignInAnonymouslyAsync();
+        }
     }
 
     // Update is called once per frame
@@ -43,6 +46,7 @@ public class TestRelay : MonoBehaviour
             Debug.Log(e);
         }
     }
+    public bool joinedFail=false;
     public async void joinReley(string joincode)
     {
         try
@@ -59,8 +63,10 @@ public class TestRelay : MonoBehaviour
         }
         catch (RelayServiceException e)
         {
-            Debug.Log(e);   
+            joinedFail = true;
+            Debug.Log(e);
         }
+
     }
     public void disconect()
     {

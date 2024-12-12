@@ -112,9 +112,15 @@ public class SystemManagerMulti : MonoBehaviour
                 }
             }
         }
+        NetworkManager.Singleton.OnClientDisconnectCallback += OnPlayerDiss2;
 
 
     }
+    void OnPlayerDiss2(ulong clientId)
+    {
+        BackToMainMenu();
+    }
+
     private void Update()
     {
         if (doonce && NetworkManager.Singleton.IsHost && IsPlayerSceneLoaded())
@@ -386,11 +392,15 @@ public class SystemManagerMulti : MonoBehaviour
         }
     }
     float enemyTotalScore;
+   
     public void BackToMainMenu()
     {
         Admanager.instance.addscrip.ShowAd();
+        Admanager.instance.bannerscrip.ShowBannerAd();
+        NetworkManager.Singleton.Shutdown();
         SceneManager.LoadScene(0);
     }
+  
     public void addEnemyScore(int a)
     {
         if (currentEntryOfEnemyScore == 8)

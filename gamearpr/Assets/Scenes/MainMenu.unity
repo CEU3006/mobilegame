@@ -892,6 +892,99 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 151392526}
   m_CullTransparentMesh: 1
+--- !u!1 &205877568
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 205877572}
+  - component: {fileID: 205877571}
+  - component: {fileID: 205877570}
+  - component: {fileID: 205877569}
+  - component: {fileID: 205877573}
+  m_Layer: 0
+  m_Name: AddManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &205877569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205877568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bcfa09072808924b94eb04f5a232941, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  androidgameid: 5716406
+  iosGameId: 5716407
+  Testing: 1
+--- !u!114 &205877570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205877568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b154a99ace1d3248abf58055c3a4fe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  addscrip: {fileID: 205877571}
+  initaliseadds: {fileID: 205877569}
+  bannerscrip: {fileID: 205877573}
+--- !u!114 &205877571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205877568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a035788686eaf4a91431f38c7d292c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  androidAdUnitid: Interstitial_Android
+  iosAdUnitId: Interstitial_iOS
+--- !u!4 &205877572
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205877568}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 540, y: 1170, z: 4.595}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &205877573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205877568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80ccac82f0f83d9428ab5a284d1bfe05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  androidAdUnitid: Banner_Android
+  iosAdUnitId: Banner_iOS
 --- !u!1 &247551743
 GameObject:
   m_ObjectHideFlags: 0
@@ -4786,6 +4879,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   joinCode: 
+  joinedFail: 0
 --- !u!1 &1198886767
 GameObject:
   m_ObjectHideFlags: 0
@@ -6506,7 +6600,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 290401147}
         m_TargetAssemblyTypeName: MainMenuSystemManager, Assembly-CSharp
-        m_MethodName: ExitButton
+        m_MethodName: onWantingtoleave
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6639,7 +6733,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 290401147}
         m_TargetAssemblyTypeName: MainMenuSystemManager, Assembly-CSharp
-        m_MethodName: ExitButton
+        m_MethodName: onWantingtoleave
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7709,7 +7803,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 290401147}
         m_TargetAssemblyTypeName: MainMenuSystemManager, Assembly-CSharp
-        m_MethodName: BackButton
+        m_MethodName: onWantingtoleave
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8239,3 +8333,4 @@ SceneRoots:
   - {fileID: 1062271467}
   - {fileID: 545936085}
   - {fileID: 1183010632}
+  - {fileID: 205877572}
