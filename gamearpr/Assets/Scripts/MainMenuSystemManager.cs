@@ -4,12 +4,16 @@ using System.IO;
 using System.Net.Sockets;
 using System.Net;
 using TMPro;
+using GooglePlayGames;
+using GooglePlayGames.BasicApi;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Unity.Services.Relay;
 using System;
+
+
 
 public class MainMenuSystemManager : MonoBehaviour
 {
@@ -28,23 +32,23 @@ public class MainMenuSystemManager : MonoBehaviour
     [SerializeField] UnityTransport transport;
     [SerializeField] TextMeshProUGUI ipAddressText;
     [SerializeField] TMP_InputField ip;
-    [SerializeField] TextMeshProUGUI test1;
-    [SerializeField] TextMeshProUGUI test2;
     TestRelay relay;
     NetworkManager netman;
     AudioSource musicsource;
     public int playersConnected;
     bool waitingforplayer = false;
-    //musicdata datam;
     bool Musicon;
     NetworkSceneManager sceneman;
-
     // Start is called before the first frame update
+    private void Awake()
+    {
+        PlayGamesPlatform.DebugLogEnabled = true;
+        PlayGamesPlatform.Activate();
+    }
     void Start()
     {
 
-        //ipAddress = "0.0.0.0";
-        //SetIpAddress();
+       
 
         LoadData();
         musicsource = gameObject.GetComponent<AudioSource>();
@@ -57,14 +61,30 @@ public class MainMenuSystemManager : MonoBehaviour
         netman = network.GetComponent<NetworkManager>();
         if (netman != null)
         {
-            // Subscribe to the client connected callback
             NetworkManager.Singleton.OnClientDisconnectCallback += OnPlayerDiss;
         }
         relay = network.GetComponent<TestRelay>();
-
-
+        
+        LogInToGooglePlay();
+}
+    private void LogInToGooglePlay()
+    {
+        PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
     }
-    void OnPlayerJoin(ulong clientId)
+    private void ProcessAuthentication(SignInStatus status)
+    {
+        if (status==SignInStatus.Success)
+        {
+            relay.keepConnectedToGoogle = true;
+        }
+        else
+        {
+            relay.keepConnectedToGoogle = false;
+
+        }
+    }
+
+void OnPlayerJoin(ulong clientId)
     {
         Debug.Log($"Player with Client ID {clientId} has joined the game.");
     }
@@ -74,7 +94,6 @@ public class MainMenuSystemManager : MonoBehaviour
     }
     public void onWantingtoleave()
     {
-        //SceneManager.LoadScene(0);
         if (SceneManager.GetActiveScene().name == "MainMenu")
         {
             MultiSelect.SetActive(true);
@@ -88,7 +107,6 @@ public class MainMenuSystemManager : MonoBehaviour
     {
         if (NetworkManager.Singleton.IsHost)
         {
-            test1.text = "" + NetworkManager.Singleton.ConnectedClients.Count;
             if (NetworkManager.Singleton.ConnectedClients.Count == 2 && waitingforplayer)
             {
                 waitingforplayer = false;
@@ -96,11 +114,6 @@ public class MainMenuSystemManager : MonoBehaviour
                 MultiMenuPickingScreen.SetActive(true);
 
             }
-        }
-        if (NetworkManager.Singleton.IsClient)
-        {
-            test2.text = "" + NetworkManager.Singleton.IsConnectedClient;
-
         }
         if (relay.joinedFail)
         {
@@ -111,7 +124,6 @@ public class MainMenuSystemManager : MonoBehaviour
         if (waitingforplayer)
         {
             ipAddressText.text = relay.joinCode;
-            //Debug.Log((string)relay.joinCode);
 
         }
     }

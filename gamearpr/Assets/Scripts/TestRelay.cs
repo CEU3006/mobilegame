@@ -12,6 +12,7 @@ public class TestRelay : MonoBehaviour
 {
     // Start is called before the first frame update
     public string joinCode;
+    public bool keepConnectedToGoogle=false;
     private async void  Start()
     {
         await UnityServices.InitializeAsync();

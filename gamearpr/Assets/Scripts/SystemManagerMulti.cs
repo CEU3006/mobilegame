@@ -1,3 +1,5 @@
+using BowlingARGame;
+using GooglePlayGames;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -5,6 +7,7 @@ using System.Linq;
 using System.Net.NetworkInformation;
 using TMPro;
 using Unity.Netcode;
+using Unity.Services.Relay;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -39,6 +42,7 @@ public class SystemManagerMulti : MonoBehaviour
     bool doonce = true;
     [SerializeField] GameObject sesionAR;
     Moving ballscrip;
+    TestRelay relay;
     private void Start()
     {
         if (!NetworkManager.Singleton.IsHost)
@@ -113,7 +117,10 @@ public class SystemManagerMulti : MonoBehaviour
             }
         }
         NetworkManager.Singleton.OnClientDisconnectCallback += OnPlayerDiss2;
+        PlayGamesPlatform.DebugLogEnabled = true;
+        PlayGamesPlatform.Activate();
 
+        relay = net.GetComponent<TestRelay>();
 
     }
     void OnPlayerDiss2(ulong clientId)
@@ -392,7 +399,7 @@ public class SystemManagerMulti : MonoBehaviour
         }
     }
     float enemyTotalScore;
-   
+
     public void BackToMainMenu()
     {
         Admanager.instance.addscrip.ShowAd();
@@ -400,7 +407,10 @@ public class SystemManagerMulti : MonoBehaviour
         NetworkManager.Singleton.Shutdown();
         SceneManager.LoadScene(0);
     }
-  
+    private void Leaderbordupdate(bool success)
+    {
+        if(success) { Debug.Log("update"); }
+    }
     public void addEnemyScore(int a)
     {
         if (currentEntryOfEnemyScore == 8)
@@ -409,8 +419,24 @@ public class SystemManagerMulti : MonoBehaviour
             textMeshProsForEnemy[currentEntryOfEnemyScore].GetComponent<TextMeshProUGUI>().text = "Total" + a;
             if (NetworkManager.Singleton.IsHost)
             {
-               
-                    exitBut.SetActive(true);
+
+                exitBut.SetActive(true);
+                if (relay.keepConnectedToGoogle)
+                {
+                    if(SceneManager.GetActiveScene().name== "EasyMuli")
+                    {
+                        Social.ReportScore((int)total, GPGSIDs.leaderboard_easy_mode_leaderboard, Leaderbordupdate);
+                    }
+                    else if (SceneManager.GetActiveScene().name == "ClassicMuliPlayer")
+                    {
+                        Social.ReportScore((int)total, GPGSIDs.leaderboard_classic_mode_leaderboard, Leaderbordupdate);
+
+                    }
+                    else if (SceneManager.GetActiveScene().name == "ArcadeMulti")
+                    {
+                        Social.ReportScore((int)total, GPGSIDs.leaderboard_arcade_mode_leaderboard, Leaderbordupdate);
+                    }
+                }
                 if (enemyTotalScore < total)
                 {
                     textforwinorloss.GetComponent<TextMeshProUGUI>().text = "You Won";
@@ -423,7 +449,7 @@ public class SystemManagerMulti : MonoBehaviour
                 {
                     textforwinorloss.GetComponent<TextMeshProUGUI>().text = "You Draw";
                 }
-                
+
             }
         }
         else

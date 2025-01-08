@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
-using UnityEngine.InputSystem.Android;
 
 public class AddScript : MonoBehaviour,IUnityAdsLoadListener,IUnityAdsShowListener
 {

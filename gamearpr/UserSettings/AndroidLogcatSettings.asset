@@ -2,8 +2,8 @@
     "m_SelectedDeviceId": "3C201JEKB12833",
     "m_SelectedProcess": {
         "deviceId": "3C201JEKB12833",
-        "name": "com.DefaultCompany.gamearpr",
-        "processId": 26417,
+        "name": "com.can3006.BowlingARGame",
+        "processId": 23024,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -90,6 +90,60 @@
             "deviceId": "3C201JEKB12833",
             "name": "com.DefaultCompany.gamearpr",
             "processId": 26417,
+            "exited": false
+        },
+        {
+            "deviceId": "3C201JEKB12833",
+            "name": "com.DefaultCompany.gamearpr",
+            "processId": 20802,
+            "exited": false
+        },
+        {
+            "deviceId": "3C201JEKB12833",
+            "name": "com.can3006.BowlingARGame",
+            "processId": 4155,
+            "exited": false
+        },
+        {
+            "deviceId": "3C201JEKB12833",
+            "name": "com.can3006.BowlingARGame",
+            "processId": 12239,
+            "exited": false
+        },
+        {
+            "deviceId": "3C201JEKB12833",
+            "name": "com.can3006.BowlingARGame",
+            "processId": 15111,
+            "exited": false
+        },
+        {
+            "deviceId": "3C201JEKB12833",
+            "name": "com.can3006.BowlingARGame",
+            "processId": 16893,
+            "exited": false
+        },
+        {
+            "deviceId": "3C201JEKB12833",
+            "name": "com.can3006.BowlingARGame",
+            "processId": 18770,
+            "exited": false
+        },
+        {
+            "deviceId": "3C201JEKB12833",
+            "name": "com.can3006.BowlingARGame",
+            "processId": 21947,
+            "exited": false
+        },
+        {
+            "deviceId": "3C201JEKB12833",
+            "name": "com.can3006.BowlingARGame",
+            "processId": 22466,
+            "exited": false
+        },
+        {
+            "deviceId": "3C201JEKB12833",
+            "name": "com.can3006.BowlingARGame",
+            "processId": 23024,
             "exited": false
         }
     ],

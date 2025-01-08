@@ -4,28 +4,38 @@ using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using GooglePlayGames;
+using GooglePlayGames.BasicApi;
+using Unity.Services.Relay;
+using Unity.Netcode;
+using BowlingARGame;
 
 public class SystemManager : MonoBehaviour
 {
     public List<Vector2> listOfscores = new List<Vector2>();
     bool secondPart = false;
     public Vector2 currentscore = Vector2.zero;
-    List<GameObject> pinsDelete= new List<GameObject>();
-    [SerializeField]public List< GameObject> textMeshPros = new List<GameObject>();
+    List<GameObject> pinsDelete = new List<GameObject>();
+    [SerializeField] public List<GameObject> textMeshPros = new List<GameObject>();
     [SerializeField] public GameObject ball;
     [SerializeField] public GameObject button;
     [SerializeField] public GameObject exitBut;
     AudioSource musicsource;
     bool Musicon;
+    TestRelay relay;
     private void Start()
     {
         LoadData();
         musicsource = gameObject.GetComponent<AudioSource>();
+        GameObject network = GameObject.Find("Network");
+        relay = network.GetComponent<TestRelay>();
 
         if (Musicon)
         {
             musicsource.Play();
         }
+        PlayGamesPlatform.DebugLogEnabled = true;
+        PlayGamesPlatform.Activate();
     }
     public void ballAtEnd()
     {
@@ -33,7 +43,7 @@ public class SystemManager : MonoBehaviour
         int pinsnocked = 0;
         foreach (GameObject pin in pins)
         {
-            if(pin.transform.rotation.eulerAngles.x > 50|| pin.transform.rotation.eulerAngles.x < -50|| pin.transform.rotation.eulerAngles.z > 50 || pin.transform.rotation.eulerAngles.z < -50)
+            if (pin.transform.rotation.eulerAngles.x > 50 || pin.transform.rotation.eulerAngles.x < -50 || pin.transform.rotation.eulerAngles.z > 50 || pin.transform.rotation.eulerAngles.z < -50)
             {
                 pinsnocked++;
                 pin.gameObject.SetActive(false);
@@ -76,11 +86,11 @@ public class SystemManager : MonoBehaviour
                 currentscore.x = pinsnocked;
 
                 textMeshPros[listOfscores.Count * 2].GetComponent<TextMeshProUGUI>().text = "" + currentscore.x;
-            } 
+            }
         }
         else
         {
-            secondPart= false;
+            secondPart = false;
             foreach (GameObject pin in pins)
             {
                 pinscript pin_script = pin.gameObject.GetComponent<pinscript>();
@@ -95,25 +105,41 @@ public class SystemManager : MonoBehaviour
             pinsDelete.Clear();
             currentscore.y = pinsnocked;
             listOfscores.Add(currentscore);
-            textMeshPros[(listOfscores.Count * 2)-1].GetComponent<TextMeshProUGUI>().text = "" + currentscore.y;
-            if(listOfscores.Count>=4)
+            textMeshPros[(listOfscores.Count * 2) - 1].GetComponent<TextMeshProUGUI>().text = "" + currentscore.y;
+            if (listOfscores.Count >= 4)
             {
                 endOfGame();
             }
-            //for (int i = 0; i < listOfscores.Count; i++)
-            //{
-            //    Debug.Log(listOfscores[i]);
-            //}
         }
+    }
+    private void Leaderbordupdate(bool success)
+    {
+        if (success) { Debug.Log("update"); }
     }
     void endOfGame()
     {
         float total = 0;
-        for(int i = 0; listOfscores.Count>i;i++)
+        for (int i = 0; listOfscores.Count > i; i++)
         {
             total += listOfscores[i].x + listOfscores[i].y;
         }
         textMeshPros[(listOfscores.Count * 2)].GetComponent<TextMeshProUGUI>().text = "Total:" + total;
+        if (relay.keepConnectedToGoogle)
+        {
+            if (SceneManager.GetActiveScene().name == "EasyMuli")
+            {
+                Social.ReportScore((int)total, GPGSIDs.leaderboard_easy_mode_leaderboard, Leaderbordupdate);
+            }
+            else if (SceneManager.GetActiveScene().name == "ClassicMuliPlayer")
+            {
+                Social.ReportScore((int)total, GPGSIDs.leaderboard_classic_mode_leaderboard, Leaderbordupdate);
+
+            }
+            else if (SceneManager.GetActiveScene().name == "ArcadeMulti")
+            {
+                Social.ReportScore((int)total, GPGSIDs.leaderboard_arcade_mode_leaderboard, Leaderbordupdate);
+            }
+        }
         ball.SetActive(false);
         button.SetActive(false);
         exitBut.SetActive(true);
@@ -137,7 +163,7 @@ public class SystemManager : MonoBehaviour
         }
         musicdata data = JsonUtility.FromJson<musicdata>(json);
         Musicon = data.Musicon;
-        
+
     }
 }
 
