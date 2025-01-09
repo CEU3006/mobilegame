@@ -112,8 +112,14 @@ void OnPlayerJoin(ulong clientId)
                 waitingforplayer = false;
                 WaitingScreen.SetActive(false);
                 MultiMenuPickingScreen.SetActive(true);
+                Social.ReportProgress(GPGSIDs.achievement_play_with_a_friend, 100, null);
+
 
             }
+        }
+        if (NetworkManager.Singleton.IsConnectedClient)
+        {
+            Social.ReportProgress(GPGSIDs.achievement_play_with_a_friend, 100, null);
         }
         if (relay.joinedFail)
         {
@@ -136,6 +142,13 @@ void OnPlayerJoin(ulong clientId)
     {
         mainMenu.SetActive(false);
         LevelSelect.SetActive(true);
+    }
+    public void showleaderbord()
+    {
+        if(relay.keepConnectedToGoogle)
+        {
+            Social.ShowLeaderboardUI();
+        }
     }
     public void ExitButton()
     {
@@ -246,6 +259,7 @@ void OnPlayerJoin(ulong clientId)
         ipAddress = ipAddress.Trim();
         if (ipAddress != "")
         {
+            relay.joinedFail = false;
             MultiSelect.SetActive(false);
             Connectingscreen.SetActive(true);
             relay.joinReley(ipAddress);

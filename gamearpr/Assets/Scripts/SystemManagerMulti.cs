@@ -288,11 +288,24 @@ public class SystemManagerMulti : MonoBehaviour
                 pinsDelete.Add(pin);
             }
         }
+        if (pinsnocked > 0)
+        {
+            if (relay.keepConnectedToGoogle)
+            {
+                Social.ReportProgress(GPGSIDs.achievement_score, 100, null);
+            }
+        }
         if (!secondPart)
         {
             secondPart = true;
             if (pinsnocked == 9)
             {
+                if (relay.keepConnectedToGoogle)
+                {
+                    Social.ReportProgress(GPGSIDs.achievement_strike, 100, null);
+                }
+
+
                 pinsnocked = 10;
 
                 currentscore.x = pinsnocked;
@@ -347,6 +360,10 @@ public class SystemManagerMulti : MonoBehaviour
             pinsDelete.Clear();
             currentscore.y = pinsnocked;
             listOfscores.Add(currentscore);
+            if (currentscore.y + currentscore.x == 9 && relay.keepConnectedToGoogle)
+            {
+                Social.ReportProgress(GPGSIDs.achievement_strike, 100, null);
+            }
             textMeshPros[(listOfscores.Count * 2) - 1].GetComponent<TextMeshProUGUI>().text = "" + currentscore.y;
             if (NetworkManager.Singleton.IsHost)
             {
@@ -381,6 +398,28 @@ public class SystemManagerMulti : MonoBehaviour
         }
         ball.SetActive(false);
         button.SetActive(false);
+        if (relay.keepConnectedToGoogle)
+        {
+            Social.ReportProgress(GPGSIDs.achievement_bowling_champion, 100, null);
+
+            if (SceneManager.GetActiveScene().name == "EasyMuli")
+            {
+                Social.ReportScore((int)total, GPGSIDs.leaderboard_easy_mode_leaderboard, Leaderbordupdate);
+            }
+            else if (SceneManager.GetActiveScene().name == "ClassicMuliPlayer")
+            {
+                Social.ReportScore((int)total, GPGSIDs.leaderboard_classic_mode_leaderboard, Leaderbordupdate);
+                Social.ReportProgress(GPGSIDs.achievement_finish_a_game_of_classic, 100, null);
+
+            }
+            else if (SceneManager.GetActiveScene().name == "ArcadeMulti")
+            {
+                Social.ReportProgress(GPGSIDs.achievement_arcade, 100, null);
+
+                Social.ReportScore((int)total, GPGSIDs.leaderboard_arcade_mode_leaderboard, Leaderbordupdate);
+            }
+        }
+
         if (!NetworkManager.Singleton.IsHost)
         {
             exitBut.SetActive(true);
@@ -409,7 +448,7 @@ public class SystemManagerMulti : MonoBehaviour
     }
     private void Leaderbordupdate(bool success)
     {
-        if(success) { Debug.Log("update"); }
+        if (success) { Debug.Log("update"); }
     }
     public void addEnemyScore(int a)
     {
@@ -423,17 +462,22 @@ public class SystemManagerMulti : MonoBehaviour
                 exitBut.SetActive(true);
                 if (relay.keepConnectedToGoogle)
                 {
-                    if(SceneManager.GetActiveScene().name== "EasyMuli")
+                    Social.ReportProgress(GPGSIDs.achievement_bowling_champion, 100, null);
+
+                    if (SceneManager.GetActiveScene().name == "EasyMuli")
                     {
                         Social.ReportScore((int)total, GPGSIDs.leaderboard_easy_mode_leaderboard, Leaderbordupdate);
                     }
                     else if (SceneManager.GetActiveScene().name == "ClassicMuliPlayer")
                     {
                         Social.ReportScore((int)total, GPGSIDs.leaderboard_classic_mode_leaderboard, Leaderbordupdate);
+                        Social.ReportProgress(GPGSIDs.achievement_finish_a_game_of_classic, 100, null);
 
                     }
                     else if (SceneManager.GetActiveScene().name == "ArcadeMulti")
                     {
+                        Social.ReportProgress(GPGSIDs.achievement_arcade, 100, null);
+
                         Social.ReportScore((int)total, GPGSIDs.leaderboard_arcade_mode_leaderboard, Leaderbordupdate);
                     }
                 }
