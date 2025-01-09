@@ -1,0 +1,53 @@
+apply plugin: 'com.android.library'
+
+dependencies {
+
+    // ***DEPS***
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    classpath 'com.android.tools.build:gradle:7.0.2'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion '32.0.0'
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName '1.0.0'
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a'
+        }
+        consumerProguardFiles 'proguard-unity.txt'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    aaptOptions {
+        // Ensures that Unity-specific file types are not compressed
+        noCompress = ['.unity3d', '.ress', '.resource', '.obb', '.bundle', '.unityexp'] + unityStreamingAssets.tokenize(', ')
+
+        // Pattern for ignoring assets
+        ignoreAssetsPattern = "!.svn:!.git:!.ds_store:!*.scc:!CVS:!thumbs.db:!picasa.ini:!*~"
+    }
+
+    packagingOptions {
+        exclude ('/lib/armeabi/*' + '*')
+        exclude ('/lib/mips/*' + '*')
+        exclude ('/lib/mips64/*' + '*')
+        exclude ('/lib/x86/*' + '*')
+        exclude ('/lib/x86_64/*' + '*')
+        doNotStrip '*/armeabi-v7a/*.so'
+        doNotStrip '*/arm64-v8a/*.so'
+    }
+
+    ndkPath "C:/Program Files/Unity/Hub/Editor/2022.3.26f1/Editor/Data/PlaybackEngines/AndroidPlayer/NDK"
+}
