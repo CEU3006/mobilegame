@@ -139,7 +139,16 @@ public class SystemManager : MonoBehaviour
         textMeshPros[(listOfscores.Count * 2)].GetComponent<TextMeshProUGUI>().text = "Total:" + total;
         if (relay.keepConnectedToGoogle)
         {
-            Social.ReportProgress(GPGSIDs.achievement_bowling_champion, 100, null);
+            PlayGamesPlatform platform = (PlayGamesPlatform)Social.Active;
+            platform.IncrementAchievement(GPGSIDs.achievement_bowling_champion, 1,
+                (bool success) =>
+                {
+                    if (!success)
+                    {
+                        Debug.Log("Failed to increment achievement progress.");
+                    }
+                }
+            );
 
             if (SceneManager.GetActiveScene().name == "Easy")
             {

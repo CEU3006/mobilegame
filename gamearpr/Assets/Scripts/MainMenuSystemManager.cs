@@ -163,7 +163,7 @@ void OnPlayerJoin(ulong clientId)
     {
         Admanager.instance.bannerscrip.HidBannerAd();
 
-        NetworkManager.Singleton.SceneManager.LoadScene("ClassicMuliPlayer", LoadSceneMode.Single); SceneManager.LoadScene(4);
+        NetworkManager.Singleton.SceneManager.LoadScene("EasyMuli", LoadSceneMode.Single); SceneManager.LoadScene(4);
         NetworkManager.Singleton.OnClientConnectedCallback -= OnPlayerDiss;
 
     }
@@ -191,7 +191,7 @@ void OnPlayerJoin(ulong clientId)
     {
         Admanager.instance.bannerscrip.HidBannerAd();
 
-        NetworkManager.Singleton.SceneManager.LoadScene("ClassicMuliPlayer", LoadSceneMode.Single); SceneManager.LoadScene(6);
+        NetworkManager.Singleton.SceneManager.LoadScene("ArcadeMulti", LoadSceneMode.Single); SceneManager.LoadScene(6);
         NetworkManager.Singleton.OnClientConnectedCallback -= OnPlayerDiss;
 
     }

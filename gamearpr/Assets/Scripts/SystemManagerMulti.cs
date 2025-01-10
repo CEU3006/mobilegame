@@ -136,6 +136,8 @@ public class SystemManagerMulti : MonoBehaviour
             doonce = false;
             sesionAR.SetActive(true);
         }
+        Debug.Log("Reporting score in scene: " + SceneManager.GetActiveScene().name);
+
     }
     private bool IsPlayerSceneLoaded()
     {
@@ -398,10 +400,19 @@ public class SystemManagerMulti : MonoBehaviour
         }
         ball.SetActive(false);
         button.SetActive(false);
+
         if (relay.keepConnectedToGoogle)
         {
-            Social.ReportProgress(GPGSIDs.achievement_bowling_champion, 100, null);
-
+            PlayGamesPlatform platform = (PlayGamesPlatform)Social.Active;
+            platform.IncrementAchievement(GPGSIDs.achievement_bowling_champion, 1,
+                (bool success) =>
+                {
+                    if (!success)
+                    {
+                        Debug.Log("Failed to increment achievement progress.");
+                    }
+                }
+            );
             if (SceneManager.GetActiveScene().name == "EasyMuli")
             {
                 Social.ReportScore((int)total, GPGSIDs.leaderboard_easy_mode_leaderboard, Leaderbordupdate);
@@ -462,7 +473,16 @@ public class SystemManagerMulti : MonoBehaviour
                 exitBut.SetActive(true);
                 if (relay.keepConnectedToGoogle)
                 {
-                    Social.ReportProgress(GPGSIDs.achievement_bowling_champion, 100, null);
+                    PlayGamesPlatform platform = (PlayGamesPlatform)Social.Active;
+                    platform.IncrementAchievement(GPGSIDs.achievement_bowling_champion, 1,
+                        (bool success) =>
+                        {
+                            if (!success)
+                            {
+                                Debug.Log("Failed to increment achievement progress.");
+                            }
+                        }
+                    );
 
                     if (SceneManager.GetActiveScene().name == "EasyMuli")
                     {
