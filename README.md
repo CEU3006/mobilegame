@@ -17,7 +17,7 @@ AR Sports: augmented reality:
 
 Target platform: android on mobile   
 Game Engine used to make it: Unity   
-Plans:  
+  Plans:  
     Move the ball by rotating phone using accelerometer  
     Click screen or button to throw the ball   
     Still able to move ball by rotating phone but also backwards and forwards to slow and speed up the ball  
