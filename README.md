@@ -31,11 +31,13 @@ Concept art for game solo:
 - Design 2:   
   ![image](https://github.com/user-attachments/assets/e936faa7-a691-4175-8265-51ecb6d9dccf)
 - Design 3:   
-  ![image](https://github.com/user-attachments/assets/76c75393-156e-4144-baff-1a5345856b8b)    
+  ![image](https://github.com/user-attachments/assets/76c75393-156e-4144-baff-1a5345856b8b)
+
 Whit boxing game:    
 ![image](https://github.com/user-attachments/assets/e2bd5f5c-9ebc-47cd-a0fa-4269bb5fc606)   
 ![image](https://github.com/user-attachments/assets/2c415265-4033-480e-9b3a-1e7c6320a071)    
 ![image](https://github.com/user-attachments/assets/ace0326e-6913-4912-a9d0-4ab60cdec490)     
+
 Pictures of AR implementation:      
 ![image](https://github.com/user-attachments/assets/2635e808-c1b3-4e0f-b04c-826b36b2ce4e)   
 ![image](https://github.com/user-attachments/assets/6e9832da-c805-4fe3-85b8-b7682abe5632)    
@@ -59,24 +61,24 @@ Concept art for menu:
 - Design 3 moving sideways:     
   ![image](https://github.com/user-attachments/assets/03c9e064-f7aa-41ff-94eb-b974239cd285)     
 
-Whit boxing for menu(Moving sideways was chosen) and game modes:
- 
- 
- 
-Adding assets to the game modes and adding setting options:
- 
- 
- 
-Implementation of UI manager and persistent data for the music to be turned on and off:
-  
-  
-  
-Implementation of ads (specifically video ads as banner was done later):
-  
-  
-  
-  
- 
+Whit boxing for menu(Moving sideways was chosen) and game modes:       
+ ![image](https://github.com/user-attachments/assets/9c1bbf83-30f0-44f0-8281-cdcd73aa9f15)    
+ ![image](https://github.com/user-attachments/assets/6e0c4005-c396-4635-9e20-78174e277377)     
+ ![image](https://github.com/user-attachments/assets/af4a59b6-41c0-4f26-8569-3e2b157be347)      
+Adding assets to the game modes and adding setting options:     
+![image](https://github.com/user-attachments/assets/e6f6b869-5a62-4e9c-85b2-1f7aab0a6ea9)     
+![image](https://github.com/user-attachments/assets/c962b78c-bbf4-4f30-9da7-1d2485b8f42a)      
+![image](https://github.com/user-attachments/assets/aa46efef-1951-4b35-a9ce-fd75b41fc1bd)      
+Implementation of UI manager and persistent data for the music to be turned on and off:    
+![image](https://github.com/user-attachments/assets/95ffd7b4-514c-42c2-8d2d-b79bb4cb78fe)     
+![image](https://github.com/user-attachments/assets/9c065b91-ef3a-4cb7-9e5d-f96c41ff3595)     
+![image](https://github.com/user-attachments/assets/046aea71-2b1f-4799-bb3e-91cb4fb33602)      
+Implementation of ads (specifically video ads as banner was done later):      
+![image](https://github.com/user-attachments/assets/c110f304-c0f9-4dc6-8e9a-7d54cf739ba6)     
+![image](https://github.com/user-attachments/assets/8db422ca-358c-4673-906f-1f4d55419565)    
+![image](https://github.com/user-attachments/assets/d8452143-c60c-4003-8f5f-36cf9de4c692)      
+![image](https://github.com/user-attachments/assets/b79865e4-8e6d-4d21-922f-e8d0a77117c2)      
+![image](https://github.com/user-attachments/assets/da12ba22-c174-46fe-ac8d-967d1a8a85d8)      
 References:
 Bowling ball model:
 https://sketchfab.com/3d-models/bowling-ball-5d31d395e0e24138900065b642ac8299#download 
