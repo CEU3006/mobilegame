@@ -82,9 +82,9 @@ Implementation of ads (specifically video ads as banner was done later):
 ![image](https://github.com/user-attachments/assets/da12ba22-c174-46fe-ac8d-967d1a8a85d8)      
 
 Concept Art for Multiplayer:     
-![Concept](https://github.com/user-attachments/assets/3b3e0e1d-51ed-4f02-affe-052b40eb53e6)      
+![Concept](https://github.com/user-attachments/assets/3b3e0e1d-51ed-4f02-affe-052b40eb53e6)        
 Multiplayer built into game:    
-[![Watch the video](https://img.youtube.com/vi/lyqnZggU-HI/0.jpg)](https://www.youtube.com/shorts/lyqnZggU-HI)      
+[![Video Thumbnail](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=VIDEO_ID)    
      
 References:      
 Bowling ball model:     
