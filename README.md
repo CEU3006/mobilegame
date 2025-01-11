@@ -1,7 +1,7 @@
 Name of application/Project: Bowling AR Game  
 Name: Cieran Evan Upton  
 Student ID: 22135022  
-<ins> **Controls:**  </ins>
+<ins> **Controls:**</ins>   
 Touch screen: interact with UI (this includes all buttons on main menu and pause button and bowl button)  
 Rotate phone: makes ball move left or right or speed up or slow down depending on its rotation   
 Documentation of design and building process of Game (In chronological order):  
