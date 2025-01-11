@@ -80,6 +80,10 @@ Implementation of ads (specifically video ads as banner was done later):
 ![image](https://github.com/user-attachments/assets/d8452143-c60c-4003-8f5f-36cf9de4c692)      
 ![image](https://github.com/user-attachments/assets/b79865e4-8e6d-4d21-922f-e8d0a77117c2)      
 ![image](https://github.com/user-attachments/assets/da12ba22-c174-46fe-ac8d-967d1a8a85d8)      
+
+
+
+
 References:      
 Bowling ball model:     
 https://sketchfab.com/3d-models/bowling-ball-5d31d395e0e24138900065b642ac8299#download     
