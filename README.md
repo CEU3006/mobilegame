@@ -18,18 +18,18 @@ AR Sports: augmented reality:
 Target platform: android on mobile   
 Game Engine used to make it: Unity   
 Plans:
-- Move the ball by rotating the phone using the accelerometer
-- Click screen or button to throw the ball
-- Still able to move ball by rotating the phone but also backwards and forwards to slow and speed up the ball
-- Free to play as all of the games I looked at were
-- To return back to the main menu, you have to watch an ad
-Concept art for game solo:
-Design 1:
-    
-Design 2:
- 
-Design 3:
-  
+- Move the ball by rotating the phone using the accelerometer   
+- Click screen or button to throw the ball   
+- Still able to move ball by rotating the phone but also backwards and forwards to slow and speed up the ball   
+- Free to play as all of the games I looked at were   
+- To return back to the main menu, you have to watch an ad   
+Concept art for game solo:   
+- Design 1:
+    ![image](https://github.com/user-attachments/assets/1f1bec03-d542-4fe9-a363-a6c88bcf8780)   
+- Design 2:
+  ![image](https://github.com/user-attachments/assets/e936faa7-a691-4175-8265-51ecb6d9dccf)
+- Design 3:
+  ![image](https://github.com/user-attachments/assets/76c75393-156e-4144-baff-1a5345856b8b)
 Whit boxing game:
   
   
