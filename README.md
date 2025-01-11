@@ -80,24 +80,24 @@ Implementation of ads (specifically video ads as banner was done later):
 ![image](https://github.com/user-attachments/assets/d8452143-c60c-4003-8f5f-36cf9de4c692)      
 ![image](https://github.com/user-attachments/assets/b79865e4-8e6d-4d21-922f-e8d0a77117c2)      
 ![image](https://github.com/user-attachments/assets/da12ba22-c174-46fe-ac8d-967d1a8a85d8)      
-References:
-Bowling ball model:
-https://sketchfab.com/3d-models/bowling-ball-5d31d395e0e24138900065b642ac8299#download 
-Bowling pin model:
-https://sketchfab.com/3d-models/bowling-pin-old-low-poly-b2f373e81e0448fda16771ef62ea2c1b 
-Wood Texture 1:
-https://polyhaven.com/a/wood_planks 
-Wood Texture 2:
-https://polyhaven.com/a/dark_wooden_planks 
-TV model:
-https://sketchfab.com/3d-models/screen-tv-f0cdf527d9154bd8a8e4cd32d3855710 
-Music for Game:
-Music by <a href="https://pixabay.com/users/alba_mac-40740995/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=176807">Alba MacKenna</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=176807">Pixabay</a>
-Unity JSON tutorial:
-https://www.youtube.com/watch?v=CkBvrC0wZMU
-Unity Ads tutorial:
-https://www.youtube.com/watch?v=seTvVkaU2dk&t=903s 
-Play games plugin for unity tutorial:
-https://www.youtube.com/watch?v=lCZd_URHVK8&t=435s 
-Play games plugin for unity tutorial used for incremental achievements:
-https://www.youtube.com/watch?v=cYeK09O3xgI&t=965s 
+References:      
+Bowling ball model:     
+https://sketchfab.com/3d-models/bowling-ball-5d31d395e0e24138900065b642ac8299#download     
+Bowling pin model:     
+https://sketchfab.com/3d-models/bowling-pin-old-low-poly-b2f373e81e0448fda16771ef62ea2c1b     
+Wood Texture 1:      
+https://polyhaven.com/a/wood_planks    
+Wood Texture 2:      
+https://polyhaven.com/a/dark_wooden_planks     
+TV model:      
+https://sketchfab.com/3d-models/screen-tv-f0cdf527d9154bd8a8e4cd32d3855710     
+Music for Game:      
+Music by <a href="https://pixabay.com/users/alba_mac-40740995/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=176807">Alba MacKenna</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=176807">Pixabay</a>      
+Unity JSON tutorial:      
+https://www.youtube.com/watch?v=CkBvrC0wZMU     
+Unity Ads tutorial:      
+https://www.youtube.com/watch?v=seTvVkaU2dk&t=903s      
+Play games plugin for unity tutorial:     
+https://www.youtube.com/watch?v=lCZd_URHVK8&t=435s      
+Play games plugin for unity tutorial used for incremental achievements:      
+https://www.youtube.com/watch?v=cYeK09O3xgI&t=965s      
