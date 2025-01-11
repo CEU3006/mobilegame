@@ -46,16 +46,16 @@ Ball script implementation (accelerometer):
 Play testing: After playtesting it, I realised the Game was too easy, so I thought of the idea of adding more difficulty 
 Concept art for game Difficulty:
 - Easy mode: the ones seen above
-- Classic Mode:
+- Classic Mode:     
   ![image](https://github.com/user-attachments/assets/5ed62ae4-2c29-42fa-8885-63c6190064c1)    
-- Arcade Mode:
+- Arcade Mode:    
   ![image](https://github.com/user-attachments/assets/d43e85a7-91d9-41fb-a651-bdc09f396384)    
 Concept art for menu:
-- Design 1 moving up:
+- Design 1 moving up:     
   ![image](https://github.com/user-attachments/assets/dffcbcb3-4345-4416-a27d-f52fb2bdb6cb)     
-- Design 2 Settings Music:
+- Design 2 Settings Music:     
   ![image](https://github.com/user-attachments/assets/42b4b951-fde2-4621-bd23-5241ffa30868)     
-- Design 3 moving sideways:
+- Design 3 moving sideways:     
   ![image](https://github.com/user-attachments/assets/03c9e064-f7aa-41ff-94eb-b974239cd285)     
 
 Whit boxing for menu(Moving sideways was chosen) and game modes:
