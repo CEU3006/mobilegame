@@ -2,8 +2,8 @@ Name of application/Project: Bowling AR Game
 Name: Cieran Evan Upton  
 Student ID: 22135022  
 <ins> **Controls:**</ins>   
-Touch screen: interact with UI (this includes all buttons on main menu and pause button and bowl button)  
-Rotate phone: makes ball move left or right or speed up or slow down depending on its rotation   
+- Touch screen: interact with UI (this includes all buttons on main menu and pause button and bowl button)  
+- Rotate phone: makes ball move left or right or speed up or slow down depending on its rotation   
 <ins>**Documentation of design and building process of Game (In chronological order):**</ins>    
 <ins>Inspirations from Google Play store:</ins>  
 PBA bowling challenge:  
@@ -30,18 +30,18 @@ Concept art for game solo:
   ![image](https://github.com/user-attachments/assets/e936faa7-a691-4175-8265-51ecb6d9dccf)
 - Design 3:   
   ![image](https://github.com/user-attachments/assets/76c75393-156e-4144-baff-1a5345856b8b)    
-Whit boxing game:
+Whit boxing game:    
 ![image](https://github.com/user-attachments/assets/e2bd5f5c-9ebc-47cd-a0fa-4269bb5fc606)   
 ![image](https://github.com/user-attachments/assets/2c415265-4033-480e-9b3a-1e7c6320a071)    
 ![image](https://github.com/user-attachments/assets/ace0326e-6913-4912-a9d0-4ab60cdec490)     
-Pictures of AR implementation:
+Pictures of AR implementation:      
 ![image](https://github.com/user-attachments/assets/2635e808-c1b3-4e0f-b04c-826b36b2ce4e)   
 ![image](https://github.com/user-attachments/assets/6e9832da-c805-4fe3-85b8-b7682abe5632)    
 ![image](https://github.com/user-attachments/assets/207f46fd-f534-4626-a619-5c80d9dd163f)    
 ![image](https://github.com/user-attachments/assets/a87dca3e-b93c-4d79-b399-3dcaa83da21d)    
-Ball script implementation (accelerometer):
-  
-  
+Ball script implementation (accelerometer):    
+![image](https://github.com/user-attachments/assets/9d812470-830a-4261-a4e2-5921c6bebb3c)
+![image](https://github.com/user-attachments/assets/c02f8d96-64a2-416f-ad91-e977f49411fc)    
 Play testing: After playtesting it, I realised the Game was too easy, so I thought of the idea of adding more difficulty 
 Concept art for game Difficulty:
 Easy mode: the ones seen above
