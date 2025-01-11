@@ -3,7 +3,8 @@ Name: Cieran Evan Upton
 Student ID: 22135022  
 <ins> **Controls:**</ins>   
 - Touch screen: interact with UI (this includes all buttons on main menu and pause button and bowl button)  
-- Rotate phone: makes ball move left or right or speed up or slow down depending on its rotation   
+- Rotate phone: makes ball move left or right or speed up or slow down depending on its rotation
+
 <ins>**Documentation of design and building process of Game (In chronological order):**</ins>    
 <ins>Inspirations from Google Play store:</ins>  
 PBA bowling challenge:  
