@@ -6,14 +6,14 @@ Student ID: 22135022
 - Rotate phone: makes ball move left or right or speed up or slow down depending on its rotation
 
 <ins>**Documentation of design and building process of Game (In chronological order):**</ins>    
-**Inspirations from Google Play store:**    
-PBA bowling challenge:  
+Inspirations from Google Play store:       
+- PBA bowling challenge:  
 ![image](https://github.com/user-attachments/assets/57fbf417-8427-4a2f-861c-6c33172c7674)![image](https://github.com/user-attachments/assets/45b5c792-d45c-45a0-98e8-291946c90348)  
 
-Bowling Crew -3D bowling game:    
+- Bowling Crew -3D bowling game:    
 ![image](https://github.com/user-attachments/assets/98b31a61-5bcc-4ec1-913d-01e631f7d713)![image](https://github.com/user-attachments/assets/fec6f313-bae0-4f7d-b5cf-6584d96db2c4)  
 
-AR Sports: augmented reality:  
+- AR Sports: augmented reality:  
 ![image](https://github.com/user-attachments/assets/9ff729de-cb88-465f-b5b5-34e5c394380a)![image](https://github.com/user-attachments/assets/dbdc21f1-5bdc-4fc6-bf89-203eb4706597)   
 
 Target platform: android on mobile   
@@ -45,18 +45,19 @@ Ball script implementation (accelerometer):
 ![image](https://github.com/user-attachments/assets/c02f8d96-64a2-416f-ad91-e977f49411fc)    
 Play testing: After playtesting it, I realised the Game was too easy, so I thought of the idea of adding more difficulty 
 Concept art for game Difficulty:
-Easy mode: the ones seen above
-Classic Mode:
-  
-Arcade Mode:
-  
+- Easy mode: the ones seen above
+- Classic Mode:
+  ![image](https://github.com/user-attachments/assets/5ed62ae4-2c29-42fa-8885-63c6190064c1)    
+- Arcade Mode:
+  ![image](https://github.com/user-attachments/assets/d43e85a7-91d9-41fb-a651-bdc09f396384)    
 Concept art for menu:
-Design 1 moving up:
-  
-Design 2 Settings Music:
-  
-Design 3 moving sideways:
-  
+- Design 1 moving up:
+  ![image](https://github.com/user-attachments/assets/dffcbcb3-4345-4416-a27d-f52fb2bdb6cb)     
+- Design 2 Settings Music:
+  ![image](https://github.com/user-attachments/assets/42b4b951-fde2-4621-bd23-5241ffa30868)     
+- Design 3 moving sideways:
+  ![image](https://github.com/user-attachments/assets/03c9e064-f7aa-41ff-94eb-b974239cd285)     
+
 Whit boxing for menu(Moving sideways was chosen) and game modes:
  
  
