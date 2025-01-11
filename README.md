@@ -52,7 +52,8 @@ Concept art for game Difficulty:
 - Classic Mode:     
   ![image](https://github.com/user-attachments/assets/5ed62ae4-2c29-42fa-8885-63c6190064c1)    
 - Arcade Mode:    
-  ![image](https://github.com/user-attachments/assets/d43e85a7-91d9-41fb-a651-bdc09f396384)    
+  ![image](https://github.com/user-attachments/assets/d43e85a7-91d9-41fb-a651-bdc09f396384)
+
 Concept art for menu:
 - Design 1 moving up:     
   ![image](https://github.com/user-attachments/assets/dffcbcb3-4345-4416-a27d-f52fb2bdb6cb)     
