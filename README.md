@@ -88,7 +88,14 @@ Multiplayer built into game:
 ![Screenshot 2025-01-11 184156](https://github.com/user-attachments/assets/2a6d5955-40cd-48d2-bb34-f42bc987cd6f)
 ![Screenshot 2025-01-11 184036](https://github.com/user-attachments/assets/f7081c63-c17e-46a6-b2dc-299a74d00898)       
 Video:     
-[![Link to video](https://img.youtube.com/vi/lyqnZggU-HI/0.jpg)](https://www.youtube.com/shorts/lyqnZggU-HI)
+[![Link to video](https://img.youtube.com/vi/lyqnZggU-HI/0.jpg)](https://www.youtube.com/shorts/lyqnZggU-HI)   
+Concpt art for banner ad:      
+![conceptme](https://github.com/user-attachments/assets/2aa72cfe-2502-4b29-a9f8-a779dff761a2)       
+Concpt art for Leaderboard button:       
+![conceptleader](https://github.com/user-attachments/assets/e5a40952-b272-4674-b7ae-a16ce0ee233d)      
+![Screenshot_20250110-141825](https://github.com/user-attachments/assets/dc591ec3-caea-4e43-9b0e-46038507bb2a)     
+Leadboard button and banner in game:     
+![Screenshot_20250110-141825](https://github.com/user-attachments/assets/faa46b2d-7e0a-4cf8-9c82-2e91a46858da)      
 
 References:      
 Bowling ball model:     
