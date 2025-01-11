@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Advertisements;
+using UnityEngine.SceneManagement;
 
 public class Admanager : MonoBehaviour
 {
@@ -47,6 +48,10 @@ public class Admanager : MonoBehaviour
             Debug.Log("load ad");
             bannerscrip.ShowBannerAd();
 
+        }
+        if (SceneManager.GetActiveScene().name!= "MainMenu")
+        {
+            bannerscrip.HidBannerAd();
         }
     }
 }

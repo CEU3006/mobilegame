@@ -50,14 +50,24 @@ public class SystemManager : MonoBehaviour
                 pinsDelete.Add(pin);
             }
         }
+        if (pinsnocked > 0)
+        {
+            if (relay.keepConnectedToGoogle)
+            {
+                Social.ReportProgress(GPGSIDs.achievement_score, 100, null);
+            }
+        }
         if (!secondPart)
         {
             secondPart = true;
             if (pinsnocked == 9)
             {
+                if (relay.keepConnectedToGoogle)
+                {
+                    Social.ReportProgress(GPGSIDs.achievement_strike, 100, null);
+                }
                 pinsnocked = 10;
                 currentscore.x = pinsnocked;
-                //Debug.Log(listOfscores.Count);
                 textMeshPros[listOfscores.Count * 2].GetComponent<TextMeshProUGUI>().text = "" + currentscore.x;
                 secondPart = false;
                 foreach (GameObject pin in pins)
@@ -82,7 +92,6 @@ public class SystemManager : MonoBehaviour
             }
             else
             {
-                //Debug.Log(listOfscores.Count);
                 currentscore.x = pinsnocked;
 
                 textMeshPros[listOfscores.Count * 2].GetComponent<TextMeshProUGUI>().text = "" + currentscore.x;
@@ -105,6 +114,10 @@ public class SystemManager : MonoBehaviour
             pinsDelete.Clear();
             currentscore.y = pinsnocked;
             listOfscores.Add(currentscore);
+            if (currentscore.y + currentscore.x == 9&& relay.keepConnectedToGoogle)
+            {
+                Social.ReportProgress(GPGSIDs.achievement_strike, 100, null);
+            }
             textMeshPros[(listOfscores.Count * 2) - 1].GetComponent<TextMeshProUGUI>().text = "" + currentscore.y;
             if (listOfscores.Count >= 4)
             {
@@ -126,17 +139,30 @@ public class SystemManager : MonoBehaviour
         textMeshPros[(listOfscores.Count * 2)].GetComponent<TextMeshProUGUI>().text = "Total:" + total;
         if (relay.keepConnectedToGoogle)
         {
-            if (SceneManager.GetActiveScene().name == "EasyMuli")
+            PlayGamesPlatform platform = (PlayGamesPlatform)Social.Active;
+            platform.IncrementAchievement(GPGSIDs.achievement_bowling_champion, 1,
+                (bool success) =>
+                {
+                    if (!success)
+                    {
+                        Debug.Log("Failed to increment achievement progress.");
+                    }
+                }
+            );
+
+            if (SceneManager.GetActiveScene().name == "Easy")
             {
                 Social.ReportScore((int)total, GPGSIDs.leaderboard_easy_mode_leaderboard, Leaderbordupdate);
             }
-            else if (SceneManager.GetActiveScene().name == "ClassicMuliPlayer")
+            else if (SceneManager.GetActiveScene().name == "Classic")
             {
                 Social.ReportScore((int)total, GPGSIDs.leaderboard_classic_mode_leaderboard, Leaderbordupdate);
+                Social.ReportProgress(GPGSIDs.achievement_finish_a_game_of_classic, 100, null);
 
             }
-            else if (SceneManager.GetActiveScene().name == "ArcadeMulti")
+            else if (SceneManager.GetActiveScene().name == "Arcade")
             {
+                Social.ReportProgress(GPGSIDs.achievement_arcade, 100, null);
                 Social.ReportScore((int)total, GPGSIDs.leaderboard_arcade_mode_leaderboard, Leaderbordupdate);
             }
         }

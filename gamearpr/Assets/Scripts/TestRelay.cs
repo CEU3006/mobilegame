@@ -12,13 +12,23 @@ public class TestRelay : MonoBehaviour
 {
     // Start is called before the first frame update
     public string joinCode;
-    public bool keepConnectedToGoogle=false;
-    private async void  Start()
+    public bool keepConnectedToGoogle = false;
+    public static TestRelay instance;
+
+    private async void Start()
     {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+        DontDestroyOnLoad(gameObject);
         await UnityServices.InitializeAsync();
         if (!AuthenticationService.Instance.IsSignedIn)
         {
-            AuthenticationService.Instance.SignedIn += () => {
+            AuthenticationService.Instance.SignedIn += () =>
+            {
                 Debug.Log("signed in" + AuthenticationService.Instance.PlayerId);
             };
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
@@ -28,36 +38,36 @@ public class TestRelay : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        
+
     }
-    public  async void CreatReley()
+    public async void CreatReley()
     {
         try
         {
-            Allocation allocation=await RelayService.Instance.CreateAllocationAsync(1);
-            joinCode= await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
+            Allocation allocation = await RelayService.Instance.CreateAllocationAsync(1);
+            joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
             Debug.Log(joinCode);
             NetworkManager.Singleton.GetComponent<UnityTransport>().SetHostRelayData(allocation.RelayServer.IpV4, (ushort)allocation.RelayServer.Port, allocation.AllocationIdBytes, allocation.Key, allocation.ConnectionData);
             NetworkManager.Singleton.StartHost();
             NetworkManager.Singleton.SceneManager.ActiveSceneSynchronizationEnabled = true;
         }
-        catch(RelayServiceException e)
+        catch (RelayServiceException e)
         {
             joinCode = "fail";
             Debug.Log(e);
         }
     }
-    public bool joinedFail=false;
+    public bool joinedFail = false;
     public async void joinReley(string joincode)
     {
         try
         {
             Debug.Log("TRY");
-            JoinAllocation joinAllocation= await RelayService.Instance.JoinAllocationAsync(joincode);
-            NetworkManager.Singleton.GetComponent<UnityTransport>().SetClientRelayData(joinAllocation.RelayServer.IpV4, 
-                (ushort)joinAllocation.RelayServer.Port, 
-                joinAllocation.AllocationIdBytes, 
-                joinAllocation.Key, 
+            JoinAllocation joinAllocation = await RelayService.Instance.JoinAllocationAsync(joincode);
+            NetworkManager.Singleton.GetComponent<UnityTransport>().SetClientRelayData(joinAllocation.RelayServer.IpV4,
+                (ushort)joinAllocation.RelayServer.Port,
+                joinAllocation.AllocationIdBytes,
+                joinAllocation.Key,
                 joinAllocation.ConnectionData,
                 joinAllocation.HostConnectionData);
             NetworkManager.Singleton.StartClient();

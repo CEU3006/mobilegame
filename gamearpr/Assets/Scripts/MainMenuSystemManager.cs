@@ -112,8 +112,14 @@ void OnPlayerJoin(ulong clientId)
                 waitingforplayer = false;
                 WaitingScreen.SetActive(false);
                 MultiMenuPickingScreen.SetActive(true);
+                Social.ReportProgress(GPGSIDs.achievement_play_with_a_friend, 100, null);
+
 
             }
+        }
+        if (NetworkManager.Singleton.IsConnectedClient)
+        {
+            Social.ReportProgress(GPGSIDs.achievement_play_with_a_friend, 100, null);
         }
         if (relay.joinedFail)
         {
@@ -137,6 +143,13 @@ void OnPlayerJoin(ulong clientId)
         mainMenu.SetActive(false);
         LevelSelect.SetActive(true);
     }
+    public void showleaderbord()
+    {
+        if(relay.keepConnectedToGoogle)
+        {
+            Social.ShowLeaderboardUI();
+        }
+    }
     public void ExitButton()
     {
         Application.Quit();
@@ -150,7 +163,7 @@ void OnPlayerJoin(ulong clientId)
     {
         Admanager.instance.bannerscrip.HidBannerAd();
 
-        NetworkManager.Singleton.SceneManager.LoadScene("ClassicMuliPlayer", LoadSceneMode.Single); SceneManager.LoadScene(4);
+        NetworkManager.Singleton.SceneManager.LoadScene("EasyMuli", LoadSceneMode.Single); SceneManager.LoadScene(4);
         NetworkManager.Singleton.OnClientConnectedCallback -= OnPlayerDiss;
 
     }
@@ -178,7 +191,7 @@ void OnPlayerJoin(ulong clientId)
     {
         Admanager.instance.bannerscrip.HidBannerAd();
 
-        NetworkManager.Singleton.SceneManager.LoadScene("ClassicMuliPlayer", LoadSceneMode.Single); SceneManager.LoadScene(6);
+        NetworkManager.Singleton.SceneManager.LoadScene("ArcadeMulti", LoadSceneMode.Single); SceneManager.LoadScene(6);
         NetworkManager.Singleton.OnClientConnectedCallback -= OnPlayerDiss;
 
     }
@@ -246,6 +259,7 @@ void OnPlayerJoin(ulong clientId)
         ipAddress = ipAddress.Trim();
         if (ipAddress != "")
         {
+            relay.joinedFail = false;
             MultiSelect.SetActive(false);
             Connectingscreen.SetActive(true);
             relay.joinReley(ipAddress);

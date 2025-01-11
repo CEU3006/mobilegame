@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Advertisements;
 
@@ -24,7 +25,6 @@ AdUnitId = iosAdUnitId;
     {
         
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -37,9 +37,7 @@ AdUnitId = iosAdUnitId;
     }
     public void ShowAd()
     {
-
         Advertisement.Show(AdUnitId, this);
-        LoadAdd();
     }
 
     public void OnUnityAdsAdLoaded(string placementId)
@@ -64,5 +62,7 @@ AdUnitId = iosAdUnitId;
 
     public void OnUnityAdsShowComplete(string placementId, UnityAdsShowCompletionState showCompletionState)
     {
+        LoadAdd();
+
     }
 }
