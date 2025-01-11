@@ -84,7 +84,7 @@ Implementation of ads (specifically video ads as banner was done later):
 Concept Art for Multiplayer:     
 ![Concept](https://github.com/user-attachments/assets/3b3e0e1d-51ed-4f02-affe-052b40eb53e6)        
 Multiplayer built into game:     
-![Screenshot 2025-01-11 184156](https://github.com/user-attachments/assets/2a6d5955-40cd-48d2-bb34-f42bc987cd6f)      
+![Screenshot 2025-01-11 184156](https://github.com/user-attachments/assets/2a6d5955-40cd-48d2-bb34-f42bc987cd6f)
 ![Screenshot 2025-01-11 184036](https://github.com/user-attachments/assets/f7081c63-c17e-46a6-b2dc-299a74d00898)       
 Video:     
 [![Link to video](https://img.youtube.com/vi/lyqnZggU-HI/0.jpg)](https://www.youtube.com/shorts/lyqnZggU-HI)
