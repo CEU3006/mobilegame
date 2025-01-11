@@ -29,16 +29,16 @@ Concept art for game solo:
 - Design 2:   
   ![image](https://github.com/user-attachments/assets/e936faa7-a691-4175-8265-51ecb6d9dccf)
 - Design 3:   
-  ![image](https://github.com/user-attachments/assets/76c75393-156e-4144-baff-1a5345856b8b)
+  ![image](https://github.com/user-attachments/assets/76c75393-156e-4144-baff-1a5345856b8b)    
 Whit boxing game:
-  
-  
-  
+![image](https://github.com/user-attachments/assets/e2bd5f5c-9ebc-47cd-a0fa-4269bb5fc606)   
+![image](https://github.com/user-attachments/assets/2c415265-4033-480e-9b3a-1e7c6320a071)    
+![image](https://github.com/user-attachments/assets/ace0326e-6913-4912-a9d0-4ab60cdec490)     
 Pictures of AR implementation:
-   
-  
-  
-  
+![image](https://github.com/user-attachments/assets/2635e808-c1b3-4e0f-b04c-826b36b2ce4e)   
+![image](https://github.com/user-attachments/assets/6e9832da-c805-4fe3-85b8-b7682abe5632)    
+![image](https://github.com/user-attachments/assets/207f46fd-f534-4626-a619-5c80d9dd163f)    
+![image](https://github.com/user-attachments/assets/a87dca3e-b93c-4d79-b399-3dcaa83da21d)    
 Ball script implementation (accelerometer):
   
   
