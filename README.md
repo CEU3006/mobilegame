@@ -24,6 +24,7 @@ Plans:
 - Still able to move ball by rotating the phone but also backwards and forwards to slow and speed up the ball   
 - Free to play as all of the games I looked at were   
 - To return back to the main menu, you have to watch an ad   
+
 Concept art for game solo:   
 - Design 1:   
     ![image](https://github.com/user-attachments/assets/1f1bec03-d542-4fe9-a363-a6c88bcf8780)   
