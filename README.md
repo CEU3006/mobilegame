@@ -4,8 +4,8 @@ Student ID: 22135022
 <ins> **Controls:**</ins>   
 Touch screen: interact with UI (this includes all buttons on main menu and pause button and bowl button)  
 Rotate phone: makes ball move left or right or speed up or slow down depending on its rotation   
-Documentation of design and building process of Game (In chronological order):  
-Inspirations from Google Play store:  
+<ins>Documentation of design and building process of Game (In chronological order):</ins> 
+<ins>Inspirations from Google Play store:</ins>  
 PBA bowling challenge:  
 ![image](https://github.com/user-attachments/assets/57fbf417-8427-4a2f-861c-6c33172c7674)![image](https://github.com/user-attachments/assets/45b5c792-d45c-45a0-98e8-291946c90348)  
 
