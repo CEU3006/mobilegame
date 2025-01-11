@@ -18,12 +18,12 @@ AR Sports: augmented reality:
 Target platform: android on mobile   
 Game Engine used to make it: Unity   
 Plans:  
-   Move the ball by rotating phone using accelerometer  
-   Click screen or button to throw the ball   
-   Still able to move ball by rotating phone but also backwards and forwards to slow and speed up the ball  
-   Free to play as all of the games I looked at were  
-   To return back to the main menu you have to watch an add   
-   Concept art for game solo:
+    Move the ball by rotating phone using accelerometer  
+    Click screen or button to throw the ball   
+    Still able to move ball by rotating phone but also backwards and forwards to slow and speed up the ball  
+    Free to play as all of the games I looked at were  
+    To return back to the main menu you have to watch an add   
+    Concept art for game solo:
 Design 1:
     
 Design 2:
