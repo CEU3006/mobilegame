@@ -24,11 +24,11 @@ Plans:
 - Free to play as all of the games I looked at were   
 - To return back to the main menu, you have to watch an ad   
 Concept art for game solo:   
-- Design 1:
+- Design 1:   
     ![image](https://github.com/user-attachments/assets/1f1bec03-d542-4fe9-a363-a6c88bcf8780)   
-- Design 2:
+- Design 2:   
   ![image](https://github.com/user-attachments/assets/e936faa7-a691-4175-8265-51ecb6d9dccf)
-- Design 3:
+- Design 3:   
   ![image](https://github.com/user-attachments/assets/76c75393-156e-4144-baff-1a5345856b8b)
 Whit boxing game:
   
