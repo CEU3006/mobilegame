@@ -63,16 +63,16 @@ Concept art for menu:
   ![image](https://github.com/user-attachments/assets/03c9e064-f7aa-41ff-94eb-b974239cd285)     
 
 Whit boxing for menu(Moving sideways was chosen) and game modes:       
- ![image](https://github.com/user-attachments/assets/9c1bbf83-30f0-44f0-8281-cdcd73aa9f15)    
- ![image](https://github.com/user-attachments/assets/6e0c4005-c396-4635-9e20-78174e277377)     
+ ![image](https://github.com/user-attachments/assets/9c1bbf83-30f0-44f0-8281-cdcd73aa9f15)
+ ![image](https://github.com/user-attachments/assets/6e0c4005-c396-4635-9e20-78174e277377)
  ![image](https://github.com/user-attachments/assets/af4a59b6-41c0-4f26-8569-3e2b157be347)      
 Adding assets to the game modes and adding setting options:     
-![image](https://github.com/user-attachments/assets/e6f6b869-5a62-4e9c-85b2-1f7aab0a6ea9)     
-![image](https://github.com/user-attachments/assets/c962b78c-bbf4-4f30-9da7-1d2485b8f42a)      
+![image](https://github.com/user-attachments/assets/e6f6b869-5a62-4e9c-85b2-1f7aab0a6ea9)
+![image](https://github.com/user-attachments/assets/c962b78c-bbf4-4f30-9da7-1d2485b8f42a)
 ![image](https://github.com/user-attachments/assets/aa46efef-1951-4b35-a9ce-fd75b41fc1bd)      
 Implementation of UI manager and persistent data for the music to be turned on and off:    
-![image](https://github.com/user-attachments/assets/95ffd7b4-514c-42c2-8d2d-b79bb4cb78fe)     
-![image](https://github.com/user-attachments/assets/9c065b91-ef3a-4cb7-9e5d-f96c41ff3595)     
+![image](https://github.com/user-attachments/assets/95ffd7b4-514c-42c2-8d2d-b79bb4cb78fe)
+![image](https://github.com/user-attachments/assets/9c065b91-ef3a-4cb7-9e5d-f96c41ff3595)
 ![image](https://github.com/user-attachments/assets/046aea71-2b1f-4799-bb3e-91cb4fb33602)      
 Implementation of ads (specifically video ads as banner was done later):      
 ![image](https://github.com/user-attachments/assets/c110f304-c0f9-4dc6-8e9a-7d54cf739ba6)     
