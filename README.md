@@ -93,9 +93,8 @@ Concpt art for banner ad:
 ![conceptme](https://github.com/user-attachments/assets/2aa72cfe-2502-4b29-a9f8-a779dff761a2)       
 Concpt art for Leaderboard button:       
 ![conceptleader](https://github.com/user-attachments/assets/e5a40952-b272-4674-b7ae-a16ce0ee233d)      
-![Screenshot_20250110-141825](https://github.com/user-attachments/assets/dc591ec3-caea-4e43-9b0e-46038507bb2a)     
 Leadboard button and banner in game:     
-![Screenshot_20250110-141825](https://github.com/user-attachments/assets/faa46b2d-7e0a-4cf8-9c82-2e91a46858da)      
+![image](https://github.com/user-attachments/assets/49a71951-9125-49c6-b3b6-32026404227e)
 
 References:      
 Bowling ball model:     
