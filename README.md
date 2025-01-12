@@ -90,7 +90,7 @@ Multiplayer built into game:
 ![image](https://github.com/user-attachments/assets/83f70fef-ef93-467e-b543-d2517b339b3f)
 ![image](https://github.com/user-attachments/assets/375d7c78-fa83-483e-a63f-72b5b95b3bfe)      
 
-Video:     
+Video of multiplayer working at time of implementation:     
 [![Link to video](https://img.youtube.com/vi/lyqnZggU-HI/0.jpg)](https://www.youtube.com/shorts/lyqnZggU-HI)   
 Concpt art for banner ad:      
 ![conceptme](https://github.com/user-attachments/assets/2aa72cfe-2502-4b29-a9f8-a779dff761a2)       
