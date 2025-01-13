@@ -114,6 +114,9 @@ Banner code:
 ![Screenshot 2025-01-13 142418](https://github.com/user-attachments/assets/18870e95-bc3a-4b99-baeb-a7fe60b0e7c3)      
 Google play plugin setup:      
 ![Screenshot 2025-01-13 142525](https://github.com/user-attachments/assets/4eae40ce-250f-40c7-951a-a9a12a081737)      
+![Screenshot 2025-01-13 142631](https://github.com/user-attachments/assets/a90a1e38-1e12-4f56-9fd8-d0506dee785e)      
+![Screenshot 2025-01-13 142644](https://github.com/user-attachments/assets/3460bb9d-02cb-4108-83ea-f994b7972f22)      
+![Screenshot 2025-01-13 152252](https://github.com/user-attachments/assets/8ebf8f45-f8b2-47fa-ae1c-d6c52e2c7f4d)      
 
 
 
