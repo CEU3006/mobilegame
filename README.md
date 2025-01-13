@@ -112,8 +112,8 @@ Leadboard, achievments and banner in game:
 
 Improvements I could do to my game to make it better is:       
 - add sounds to make it more interesting when playing.      
-- Add more settings then just turning on and of sounds.       
-- multiple controls for people who are disability's or people       
+- Add more settings then just turning on and of music.       
+- multiple controls for people who are disability's so instead of rotating the phone it has buttons as well        
 
 References:      
 Bowling ball model:     
