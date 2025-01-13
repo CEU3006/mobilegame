@@ -110,6 +110,13 @@ Leadboard, achievments and banner in game:
 ![image](https://github.com/user-attachments/assets/0d626791-cdbd-45cc-a9ff-5558b8efa8c1)
 ![image](https://github.com/user-attachments/assets/221463bd-b986-4702-b4b2-1a6110119e4c)       
 
+Banner code:    
+![Screenshot 2025-01-13 142418](https://github.com/user-attachments/assets/18870e95-bc3a-4b99-baeb-a7fe60b0e7c3)      
+Google play plugin setup:      
+![Screenshot 2025-01-13 142525](https://github.com/user-attachments/assets/4eae40ce-250f-40c7-951a-a9a12a081737)      
+
+
+
 Improvements I could do to my game to make it better is:       
 - add sounds to make it more interesting when playing.      
 - Add more settings then just turning on and of music.       
