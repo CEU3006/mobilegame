@@ -110,6 +110,11 @@ Leadboard, achievments and banner in game:
 ![image](https://github.com/user-attachments/assets/0d626791-cdbd-45cc-a9ff-5558b8efa8c1)
 ![image](https://github.com/user-attachments/assets/221463bd-b986-4702-b4b2-1a6110119e4c)       
 
+Improvements I could do to my game to make it better is:       
+- add sounds to make it more interesting when playing.      
+- Add more settings then just turning on and of sounds.       
+- multiple controls for people who are disability's or people       
+
 References:      
 Bowling ball model:     
 https://sketchfab.com/3d-models/bowling-ball-5d31d395e0e24138900065b642ac8299#download     
