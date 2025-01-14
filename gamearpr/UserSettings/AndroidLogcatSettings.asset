@@ -1,9 +1,9 @@
 {
-    "m_SelectedDeviceId": "3C201JEKB12833",
+    "m_SelectedDeviceId": "42231JEKB06055",
     "m_SelectedProcess": {
-        "deviceId": "3C201JEKB12833",
+        "deviceId": "42231JEKB06055",
         "name": "com.can3006.BowlingARGame",
-        "processId": 26332,
+        "processId": 17502,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -97,6 +97,48 @@
             "name": "com.can3006.BowlingARGame",
             "processId": 26332,
             "exited": false
+        },
+        {
+            "deviceId": "3C201JEKB12833",
+            "name": "com.can3006.BowlingARGame",
+            "processId": 3008,
+            "exited": false
+        },
+        {
+            "deviceId": "3C201JEKB12833",
+            "name": "com.can3006.BowlingARGame",
+            "processId": 11733,
+            "exited": false
+        },
+        {
+            "deviceId": "3C201JEKB12833",
+            "name": "com.can3006.BowlingARGame",
+            "processId": 26911,
+            "exited": false
+        },
+        {
+            "deviceId": "R58N83C2RVB",
+            "name": "com.can3006.BowlingARGame",
+            "processId": 29881,
+            "exited": false
+        },
+        {
+            "deviceId": "R58N83C2RVB",
+            "name": "com.can3006.BowlingARGame",
+            "processId": 7920,
+            "exited": false
+        },
+        {
+            "deviceId": "R58N83C2RVB",
+            "name": "com.can3006.BowlingARGame",
+            "processId": 7518,
+            "exited": false
+        },
+        {
+            "deviceId": "42231JEKB06055",
+            "name": "com.can3006.BowlingARGame",
+            "processId": 17502,
+            "exited": false
         }
     ],
     "m_Tags": {
@@ -187,5 +229,5 @@
             "exited": false
         }
     },
-    "m_AutoScroll": 1
+    "m_AutoScroll": 0
 }
