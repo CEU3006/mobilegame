@@ -6,9 +6,9 @@ link to google playstore: https://play.google.com/store/apps/details?id=com.can3
 
 <ins> **Controls:**</ins>   
 - Touch screen: interact with UI (this includes all buttons on main menu and pause button and bowl button)  
-- Rotate phone: makes ball move left or right or speed up or slow down depending on its rotation
-<ins> **Note on installation of the unity editor files:**</ins>          
-Must be in android for build settings      
+- Rotate phone: makes ball move left or right or speed up or slow down depending on its rotation           
+<ins> **Note on installation of the unity editor files:**</ins>            
+Must be in android for build settings        
 <ins>**Documentation of design and building process of Game (In chronological order):**</ins>    
 Inspirations from Google Play store:       
 - PBA bowling challenge:  
