@@ -118,6 +118,10 @@ Google play plugin setup:
 ![Screenshot 2025-01-13 142525](https://github.com/user-attachments/assets/4eae40ce-250f-40c7-951a-a9a12a081737)      
 ![Screenshot 2025-01-13 142631](https://github.com/user-attachments/assets/a90a1e38-1e12-4f56-9fd8-d0506dee785e)      
 ![Screenshot 2025-01-13 142644](https://github.com/user-attachments/assets/3460bb9d-02cb-4108-83ea-f994b7972f22)      
+Google play download:
+![image](https://github.com/user-attachments/assets/032f138c-4c9d-446b-893b-890898253d08)        
+Itch.io:
+![Screenshot 2025-01-13 152252](https://github.com/user-attachments/assets/84d8835e-1a64-42fb-a00b-05fc5a3d1134)       
 
 Improvements I could do to my game to make it better is:       
 - add sounds to make it more interesting when playing.      
