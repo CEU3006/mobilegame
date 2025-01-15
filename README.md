@@ -2,6 +2,8 @@ Name of application/Project: Bowling AR Game
 Name: Cieran Evan Upton  
 Student ID: 22135022  
 Itch.io link: https://icedcan.itch.io/ar-bowling-game   
+link to google playstore: https://play.google.com/store/apps/details?id=com.can3006.BowlingARGame     
+
 <ins> **Controls:**</ins>   
 - Touch screen: interact with UI (this includes all buttons on main menu and pause button and bowl button)  
 - Rotate phone: makes ball move left or right or speed up or slow down depending on its rotation
