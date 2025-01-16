@@ -152,3 +152,7 @@ Play games plugin for unity tutorial:
 https://www.youtube.com/watch?v=lCZd_URHVK8&t=435s      
 Play games plugin for unity tutorial used for incremental achievements:      
 https://www.youtube.com/watch?v=cYeK09O3xgI&t=965s      
+Google play plugin:        
+https://github.com/playgameservices/play-games-plugin-for-unity        
+Website used to create privacy policy so I could do closed testing:      
+https://app.freeprivacypolicy.com/download/70b296a2-c2c9-4efb-8f47-2b8852985066      
